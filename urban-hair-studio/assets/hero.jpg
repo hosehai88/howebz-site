@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#d7b8aa"/>
+      <stop offset="1" stop-color="#fffaf7"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#g)"/>
+  <circle cx="960" cy="160" r="110" fill="#ffffff" opacity="0.42"/>
+  <circle cx="260" cy="650" r="150" fill="#ffffff" opacity="0.5"/>
+  <rect x="290" y="270" width="620" height="260" rx="34" fill="#ffffff" opacity="0.72"/>
+  <text x="600" y="390" text-anchor="middle" font-family="Arial, sans-serif" font-size="46" font-weight="700" fill="#8b514d">Urban Hair Studio Hero</text>
+  <text x="600" y="445" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#7d6b65">Replace with real business photo</text>
+</svg>
