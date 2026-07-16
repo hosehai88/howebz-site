@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Howebz handles your professional business website, monthly social media content, promotional posters and ongoing website support." />
+  <meta name="theme-color" content="#eef1f6" />
+  <title>Howebz — Website & Monthly Marketing for Your Business</title>
+  <link rel="icon" href="assets/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <style>
+:root {
+  --bg: #edf0f5;
+  --bg-soft: #f6f7fa;
+  --surface: rgba(255,255,255,.84);
+  --surface-strong: #fff;
+  --ink: #0b1834;
+  --muted: #637087;
+  --line: rgba(70,92,127,.15);
+  --blue: #1768ff;
+  --blue-deep: #0751d9;
+  --green: #12b77b;
+  --green-deep: #009963;
+  --purple: #6e68ff;
+  --amber: #f3a73b;
+  --shadow: 0 20px 45px rgba(20,38,72,.10), 0 2px 8px rgba(20,38,72,.05);
+  --shadow-soft: 0 12px 28px rgba(20,38,72,.07);
+  --radius: 24px;
+  --container: 1180px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 8% 5%, rgba(110,104,255,.09), transparent 28%),
+    radial-gradient(circle at 92% 4%, rgba(23,104,255,.10), transparent 26%),
+    linear-gradient(180deg, #edf0f5 0%, #f5f6f9 42%, #eceff4 100%);
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .38;
+  background-image: linear-gradient(rgba(255,255,255,.35) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.28) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(to bottom, black, transparent 80%);
+  z-index: -2;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { color: inherit; font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+.svg-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+svg { width: 1.2em; height: 1.2em; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.container { width: min(var(--container), calc(100% - 40px)); margin-inline: auto; }
+.section-pad { padding: 90px 0; }
+.site-shell { overflow: hidden; }
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(18px) saturate(160%);
+  background: rgba(238,241,246,.74);
+  border-bottom: 1px solid rgba(255,255,255,.7);
+  transition: box-shadow .25s ease, background .25s ease;
+}
+.site-header.scrolled { box-shadow: 0 10px 35px rgba(25,40,70,.08); background: rgba(238,241,246,.94); }
+.nav-wrap { height: 82px; display: flex; align-items: center; gap: 27px; }
+.brand { display: inline-flex; align-items: center; gap: 11px; flex-shrink: 0; }
+.brand-mark { width: 38px; height: 38px; display: inline-grid; place-items: center; flex: 0 0 auto; }
+.brand-mark img { width: 100%; height: 100%; object-fit: contain; }
+.brand-name { font-size: 24px; font-weight: 800; letter-spacing: -.6px; }
+.desktop-nav { display: flex; align-items: center; gap: 27px; margin-left: auto; }
+.desktop-nav a { font-size: 14px; font-weight: 650; color: #26334d; transition: color .2s ease; }
+.desktop-nav a:hover, .desktop-nav a:focus-visible { color: var(--blue); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; border-radius: 13px; border: 1px solid transparent; font-weight: 780; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; cursor: pointer; }
+.btn:hover { transform: translateY(-2px); }
+.btn:focus-visible, button:focus-visible, a:focus-visible { outline: 3px solid rgba(23,104,255,.26); outline-offset: 3px; }
+.btn-whatsapp { color: #fff; background: linear-gradient(135deg, #14c98c, #08a66e); box-shadow: 0 10px 24px rgba(10,176,116,.20); }
+.btn-outline { color: var(--blue-deep); border-color: rgba(23,104,255,.55); background: rgba(255,255,255,.55); }
+.btn-light { background: #fff; color: var(--blue-deep); box-shadow: 0 10px 24px rgba(0,0,0,.08); }
+.btn-large { min-height: 54px; padding: 0 26px; font-size: 16px; }
+.header-cta { padding: 12px 18px; margin-left: 4px; }
+.menu-toggle { display: none; width: 44px; height: 44px; border: 0; border-radius: 12px; background: rgba(255,255,255,.76); cursor: pointer; }
+.close-icon { display: none; }
+.mobile-nav { display: none; }
+
+.hero { position: relative; padding-top: 72px; padding-bottom: 64px; }
+.hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(135deg, rgba(255,255,255,.64), rgba(223,228,237,.4)); }
+.hero-aurora { position: absolute; border-radius: 50%; filter: blur(10px); z-index: -1; }
+.hero-aurora-one { width: 460px; height: 460px; right: -180px; top: -110px; background: radial-gradient(circle, rgba(111,104,255,.18), transparent 68%); }
+.hero-aurora-two { width: 420px; height: 420px; left: -160px; bottom: -170px; background: radial-gradient(circle, rgba(23,104,255,.12), transparent 66%); }
+.hero-grid { display: grid; grid-template-columns: .95fr 1.2fr; align-items: center; gap: 62px; }
+.eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 8px 13px; border-radius: 999px; background: rgba(255,255,255,.75); border: 1px solid rgba(94,113,143,.16); color: #40506e; text-transform: uppercase; letter-spacing: .085em; font-size: 11px; font-weight: 820; box-shadow: 0 7px 20px rgba(25,40,70,.04); }
+.eyebrow svg { color: var(--amber); }
+.eyebrow.simple { text-transform: none; letter-spacing: 0; background: transparent; border: 0; padding: 0; box-shadow: none; color: var(--blue); font-size: 13px; }
+.hero h1 { margin: 24px 0 20px; font-size: clamp(46px, 5vw, 72px); line-height: 1; letter-spacing: -3.4px; max-width: 620px; }
+.hero h1 span { color: var(--blue); }
+.hero-lead { font-size: 18px; line-height: 1.65; color: #526079; margin: 0; max-width: 600px; }
+.hero-actions { display: flex; gap: 14px; margin: 30px 0 28px; }
+.trust-row { display: flex; flex-wrap: wrap; gap: 21px; color: #526078; font-size: 13px; font-weight: 680; }
+.trust-row span { display: inline-flex; align-items: center; gap: 7px; }
+.trust-row svg { color: var(--amber); }
+.hero-visual { position: relative; min-height: 510px; }
+.glass-card { background: rgba(255,255,255,.84); border: 1px solid rgba(255,255,255,.82); backdrop-filter: blur(20px); box-shadow: var(--shadow); }
+.browser-window { overflow: hidden; border-radius: 22px; position: absolute; left: 0; right: 55px; top: 0; }
+.browser-top { height: 35px; display: flex; align-items: center; gap: 7px; padding: 0 16px; border-bottom: 1px solid rgba(64,80,110,.08); }
+.dot { width: 8px; height: 8px; border-radius: 50%; }
+.red { background: #ff6c6c; } .amber { background: #ffbd51; } .green { background: #3acb78; }
+.sample-header { height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 22px; font-size: 11px; color: #29354c; }
+.sample-header strong { font-family: Georgia, serif; font-size: 14px; }
+.sample-header div { display: flex; align-items: center; gap: 17px; }
+.sample-header button, .sample-overlay button { border: 0; border-radius: 8px; padding: 9px 14px; background: #f2d9be; color: #6d4a2d; font-weight: 700; }
+.sample-hero { position: relative; height: 340px; overflow: hidden; }
+.sample-hero img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.7) brightness(1.06); }
+.sample-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(250,248,244,.98) 0%, rgba(250,248,244,.85) 37%, rgba(250,248,244,.08) 70%); }
+.sample-overlay { position: absolute; z-index: 2; left: 30px; top: 54px; max-width: 245px; }
+.sample-overlay small { font-size: 9px; color: #a8825d; font-weight: 800; letter-spacing: .05em; }
+.sample-overlay h2 { font-family: Georgia, serif; margin: 12px 0 8px; font-size: 34px; line-height: 1.04; letter-spacing: -1px; }
+.sample-overlay p { font-size: 12px; color: #5d6370; }
+.sample-overlay button { margin-top: 12px; }
+.floating-card { position: absolute; z-index: 4; border-radius: 18px; }
+.deliverables-card { right: 0; top: 118px; width: 202px; padding: 18px; }
+.floating-title { display: flex; align-items: flex-start; gap: 9px; font-size: 13px; line-height: 1.25; }
+.floating-title svg { color: var(--green); flex: 0 0 auto; }
+.deliverables-card ul { list-style: none; padding: 0; margin: 15px 0 0; display: grid; gap: 9px; font-size: 12px; color: #42516b; }
+.deliverables-card li { display: flex; align-items: center; gap: 8px; }
+.deliverables-card li span { width: 16px; height: 16px; display: grid; place-items: center; border-radius: 50%; background: #e7fff4; color: var(--green); }
+.deliverables-card li svg { width: 10px; height: 10px; stroke-width: 2.5; }
+.monthly-card { left: 80px; bottom: 0; width: 330px; padding: 16px 18px; }
+.monthly-card > div:first-child { display: flex; justify-content: space-between; align-items: center; }
+.monthly-card small { color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: .08em; }
+.monthly-card strong { font-size: 13px; }
+.monthly-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 9px; margin-top: 13px; }
+.monthly-stats span { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 9px 6px; border-radius: 12px; background: #f1f5fc; color: #66738a; font-size: 10px; font-weight: 700; }
+.monthly-stats b { color: var(--blue); font-size: 21px; line-height: 1; }
+
+.section-intro { max-width: 790px; margin: 0 auto 42px; text-align: center; }
+.section-intro h2 { font-size: clamp(34px,4vw,48px); letter-spacing: -1.8px; margin: 11px 0 0; }
+.section-intro p { color: var(--muted); font-size: 16px; line-height: 1.65; margin: 13px 0 0; }
+.included-line { display: inline-block; margin-top: 13px; color: #2c3e59; font-size: 14px; }
+
+.process { padding-top: 82px; }
+.process-grid { display: grid; grid-template-columns: 1fr 38px 1fr 38px 1fr 38px 1fr; align-items: center; }
+.process-card { min-height: 275px; position: relative; padding: 28px 22px 24px; border-radius: 20px; background: rgba(255,255,255,.78); border: 1px solid rgba(92,108,138,.14); box-shadow: var(--shadow-soft); text-align: center; }
+.step-number { position: absolute; left: 17px; top: 17px; width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; background: var(--blue); color: #fff; font-size: 12px; font-weight: 850; }
+.process-icon { width: 78px; height: 78px; margin: 24px auto 22px; display: grid; place-items: center; border-radius: 24px; }
+.process-icon svg { width: 34px; height: 34px; }
+.process-icon.blue { background: #e8f0ff; color: var(--blue); }
+.process-icon.purple { background: #eeeeff; color: var(--purple); }
+.process-icon.amber { background: #fff3df; color: #df8b19; }
+.process-icon.green { background: #e7fbf4; color: var(--green-deep); }
+.process-card h3 { margin: 0 0 10px; font-size: 17px; }
+.process-card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.58; }
+.process-arrow { display: grid; place-items: center; color: #4675bd; }
+.process-arrow svg { width: 24px; height: 24px; }
+
+.what-you-get { padding-top: 74px; }
+.brief-flow { position: relative; display: grid; grid-template-columns: 1fr 80px 1fr; align-items: center; gap: 22px; padding: 36px 40px 58px; border-radius: 28px; background: linear-gradient(120deg, rgba(236,242,255,.96), rgba(247,244,255,.95) 55%, rgba(239,252,247,.95)); border: 1px solid rgba(89,106,137,.13); box-shadow: var(--shadow); }
+.brief-column { padding: 23px; border-radius: 20px; background: rgba(255,255,255,.77); border: 1px solid rgba(255,255,255,.9); }
+.brief-label { display: inline-flex; margin-bottom: 16px; padding: 7px 11px; border-radius: 999px; background: #e7efff; color: var(--blue-deep); font-size: 10px; font-weight: 850; letter-spacing: .09em; }
+.brief-column.prepared .brief-label { background: #e6fbf3; color: var(--green-deep); }
+.brief-column ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
+.brief-column li { display: flex; align-items: center; gap: 9px; padding: 11px 12px; border-radius: 13px; background: #fff; color: #43516a; font-size: 13px; font-weight: 700; box-shadow: 0 8px 16px rgba(20,38,72,.045); }
+.brief-column li svg { color: var(--blue); flex: 0 0 auto; }
+.brief-column.prepared li svg { color: var(--green-deep); }
+.brief-arrow { width: 66px; height: 66px; display: grid; place-items: center; border-radius: 50%; background: #fff; color: var(--blue); box-shadow: var(--shadow-soft); }
+.brief-arrow svg { width: 29px; height: 29px; }
+.brief-promise { position: absolute; left: 0; right: 0; bottom: 17px; margin: 0; text-align: center; color: #4f5e76; font-size: 14px; }
+.brief-promise strong { color: var(--blue-deep); }
+.example-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; margin-top: 28px; }
+.example-card { display: flex; flex-direction: column; min-width: 0; padding: 20px; border-radius: 22px; background: rgba(255,255,255,.84); border: 1px solid rgba(89,106,137,.14); box-shadow: var(--shadow-soft); }
+.example-head { display: flex; align-items: center; gap: 11px; margin-bottom: 17px; }
+.example-head small { display: block; color: var(--muted); font-size: 9px; font-weight: 850; letter-spacing: .08em; }
+.example-head h3 { margin: 4px 0 0; font-size: 15px; }
+.example-icon { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 13px; background: #e8f0ff; color: var(--blue); flex: 0 0 auto; }
+.example-icon.amber { background: #fff1d9; color: #db8615; }
+.example-icon.green { background: #e3fbf2; color: var(--green-deep); }
+.example-icon.purple { background: #ededff; color: var(--purple); }
+.example-note { margin: 15px 0 0; color: var(--muted); font-size: 11px; line-height: 1.55; }
+.social-preview { overflow: hidden; border-radius: 15px; border: 1px solid #e0e6ef; background: #fff; }
+.social-profile { display: flex; align-items: center; gap: 9px; padding: 11px; }
+.social-profile > span { width: 31px; height: 31px; border-radius: 50%; display: grid; place-items: center; background: #14213d; color: #fff; font-size: 10px; font-weight: 850; }
+.social-profile div { display: flex; flex-direction: column; gap: 2px; }
+.social-profile strong { font-size: 10px; }
+.social-profile small { color: #8b95a6; font-size: 8px; }
+.social-preview > img { width: 100%; height: 135px; object-fit: cover; }
+.social-copy { padding: 12px; font-size: 10px; line-height: 1.48; color: #3e4a5e; }
+.social-copy p { margin: 0 0 8px; }
+.hashtags { color: var(--blue); }
+.text-toggle { border: 0; padding: 0; background: transparent; color: var(--blue-deep); font-size: 10px; font-weight: 800; cursor: pointer; }
+.text-toggle span { display: inline-block; transition: transform .2s ease; }
+.text-toggle[aria-expanded="true"] span { transform: rotate(180deg); }
+.poster-preview { min-height: 300px; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px 16px; border-radius: 16px; background: linear-gradient(145deg,#15172a,#3d1f5d 52%,#be6e41); color: #fff; text-align: center; }
+.poster-orb { position: absolute; border-radius: 50%; filter: blur(1px); opacity: .45; }
+.poster-orb.one { width: 180px; height: 180px; left: -80px; top: -55px; background: #ffbd73; }
+.poster-orb.two { width: 160px; height: 160px; right: -75px; bottom: -45px; background: #a889ff; }
+.poster-preview small, .poster-preview h4, .poster-preview strong, .poster-preview p, .poster-preview span { position: relative; z-index: 1; }
+.poster-preview small { letter-spacing: .15em; font-size: 9px; }
+.poster-preview h4 { margin: 20px 0 7px; font-size: 28px; line-height: .95; letter-spacing: -1.2px; }
+.poster-preview strong { font-size: 48px; line-height: 1; color: #ffd79a; }
+.poster-preview p { font-size: 10px; }
+.poster-preview span { margin-top: 12px; padding: 8px 13px; border-radius: 999px; background: #fff; color: #36264d; font-size: 9px; font-weight: 850; }
+.phone-preview { max-width: 230px; margin: auto; overflow: hidden; border: 8px solid #1d2026; border-radius: 25px; background: #efeae2; box-shadow: 0 15px 30px rgba(20,38,72,.18); }
+.phone-top { height: 39px; padding: 0 9px; display: flex; align-items: center; justify-content: space-between; background: #075e54; color: #fff; font-size: 9px; }
+.phone-top b { font-size: 9px; }
+.chat-area { min-height: 245px; padding: 17px 10px; background-image: radial-gradient(rgba(80,100,90,.06) 1px, transparent 1px); background-size: 13px 13px; }
+.chat-bubble { position: relative; margin-left: 5px; padding: 11px 10px 23px; border-radius: 4px 10px 10px 10px; background: #fff; color: #3b4543; font-size: 9px; line-height: 1.45; box-shadow: 0 2px 5px rgba(0,0,0,.08); }
+.chat-bubble::before { content: ""; position: absolute; left: -6px; top: 0; border-top: 7px solid #fff; border-left: 7px solid transparent; }
+.chat-bubble small { position: absolute; right: 7px; bottom: 6px; color: #7e8b88; font-size: 7px; }
+.campaign-flow { display: flex; min-height: 300px; flex-direction: column; align-items: stretch; justify-content: center; gap: 6px; padding: 16px; border-radius: 16px; background: linear-gradient(145deg,#eef1ff,#fff6ec); }
+.campaign-flow span { padding: 10px 8px; border-radius: 11px; background: #fff; border: 1px solid rgba(101,98,210,.12); color: #48536b; text-align: center; font-size: 10px; font-weight: 800; box-shadow: 0 8px 16px rgba(20,38,72,.045); }
+.campaign-flow svg { align-self: center; width: 15px; height: 15px; color: var(--purple); transform: rotate(90deg); }
+
+.pricing { padding-top: 78px; }
+.pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; align-items: stretch; }
+.price-card { position: relative; display: flex; flex-direction: column; padding: 31px 27px 25px; border-radius: 25px; background: rgba(255,255,255,.86); border: 1px solid rgba(89,106,137,.15); box-shadow: var(--shadow-soft); }
+.price-card.featured { border: 2px solid var(--blue); transform: translateY(-8px); box-shadow: 0 26px 55px rgba(23,104,255,.14); }
+.popular-badge { position: absolute; left: -2px; right: -2px; top: -2px; height: 34px; border-radius: 22px 22px 0 0; background: linear-gradient(90deg,#0e59e6,#2678ff); color: #fff; display: grid; place-items: center; text-transform: uppercase; letter-spacing: .08em; font-weight: 850; font-size: 10px; }
+.featured .price-top { padding-top: 20px; }
+.price-top { text-align: center; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+.plan-kicker { display: block; color: var(--blue); font-size: 10px; letter-spacing: .12em; font-weight: 900; }
+.price-top h3 { margin: 7px 0 0; font-size: 20px; letter-spacing: -.4px; }
+.price { font-size: 51px; font-weight: 880; letter-spacing: -2px; color: var(--blue); margin: 13px 0 7px; }
+.price span { font-size: 14px; vertical-align: top; margin-right: 2px; }
+.price small { font-size: 12px; color: #68758b; font-weight: 700; letter-spacing: 0; margin-left: 4px; }
+.price-top p { max-width: 310px; min-height: 63px; margin: 0 auto; color: var(--muted); font-size: 12px; line-height: 1.55; }
+.plan-section { padding: 22px 0 0; }
+.plan-section h4 { margin: 0 0 14px; font-size: 12px; color: #2c3d58; }
+.plan-list, .compact-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 13px; }
+.plan-list li { display: flex; align-items: flex-start; gap: 9px; }
+.plan-list > li > svg { width: 17px; height: 17px; color: var(--green); flex: 0 0 auto; margin-top: 1px; stroke-width: 2.4; }
+.plan-list span { display: flex; flex-direction: column; gap: 3px; }
+.plan-list strong { color: #283851; font-size: 12px; line-height: 1.3; }
+.plan-list small { color: var(--muted); font-size: 10px; line-height: 1.45; }
+.website-section { margin-top: 21px; padding: 18px; border-radius: 17px; background: linear-gradient(180deg,#f0f5fb,#f8fafc); }
+.website-section h4 { margin-bottom: 11px; }
+.compact-list { gap: 9px; }
+.compact-list li { position: relative; padding-left: 19px; color: #56647a; font-size: 11px; font-weight: 700; }
+.compact-list li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-weight: 900; }
+.page-example { display: block; margin-top: 11px; color: #7b8799; font-size: 9px; text-align: center; }
+.value-line { margin: 20px 0 0; color: #56647a; font-size: 11px; line-height: 1.55; font-style: italic; }
+.btn-plan { min-height: 48px; margin-top: auto; padding: 0 18px; border-color: #d6deeb; background: #fff; color: var(--blue-deep); }
+.price-card .btn-plan { margin-top: 19px; }
+.btn-plan.primary { background: var(--blue); color: #fff; border-color: var(--blue); box-shadow: 0 12px 28px rgba(23,104,255,.23); }
+.best-value { margin-top: 9px; color: var(--blue-deep); font-size: 10px; font-weight: 800; text-align: center; }
+.all-plans { margin-top: 34px; padding: 29px 31px; border-radius: 25px; background: linear-gradient(120deg,rgba(255,255,255,.86),rgba(241,247,255,.9)); border: 1px solid rgba(89,106,137,.14); box-shadow: var(--shadow-soft); }
+.all-plans-head { display: flex; align-items: center; gap: 14px; }
+.all-plans-icon { width: 49px; height: 49px; display: grid; place-items: center; border-radius: 15px; background: #e7fbf4; color: var(--green-deep); }
+.all-plans-head h3 { margin: 0; font-size: 21px; }
+.all-plans-head p { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
+.all-plans-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 22px; }
+.all-plans-grid span { display: flex; align-items: center; gap: 9px; padding: 12px 13px; border-radius: 13px; background: #fff; color: #43516a; font-size: 11px; font-weight: 750; }
+.all-plans-grid svg { color: var(--blue); width: 17px; height: 17px; flex: 0 0 auto; }
+
+.compare-section { padding: 0 0 30px; }
+.compare-toggle-wrap { display: flex; justify-content: center; }
+.compare-toggle { min-width: 280px; height: 54px; display: inline-flex; align-items: center; justify-content: center; gap: 11px; padding: 0 24px; border: 1px solid rgba(23,104,255,.3); border-radius: 14px; background: rgba(255,255,255,.82); color: var(--blue-deep); font-weight: 820; cursor: pointer; box-shadow: var(--shadow-soft); }
+.compare-toggle svg { transition: transform .25s ease; }
+.compare-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+.compare-panel { margin-top: 25px; }
+.table-scroll { overflow: auto; padding: 2px; border-radius: 23px; background: rgba(255,255,255,.73); box-shadow: var(--shadow); }
+.comparison-table { width: 100%; min-width: 1030px; border-collapse: separate; border-spacing: 0; font-size: 11px; }
+.comparison-table th, .comparison-table td { padding: 14px 13px; border-right: 1px solid #e4e9f1; border-bottom: 1px solid #e4e9f1; vertical-align: top; line-height: 1.45; }
+.comparison-table thead th { position: sticky; top: 0; z-index: 2; background: #10213f; color: #fff; font-size: 11px; text-align: left; }
+.comparison-table thead th:first-child { border-radius: 21px 0 0 0; }
+.comparison-table thead th:last-child { border-radius: 0 21px 0 0; }
+.comparison-table th:first-child { width: 21%; }
+.comparison-table th:last-child, .comparison-table td:last-child { width: 29%; border-right: 0; color: #5e6c82; }
+.comparison-table tbody th { color: #2a3a53; text-align: left; background: rgba(255,255,255,.8); }
+.comparison-table tbody td { color: #48566d; background: rgba(255,255,255,.67); }
+.comparison-table .featured-col { background: #edf4ff; }
+.comparison-table thead .featured-col { background: var(--blue); }
+.comparison-table .section-row th { padding: 13px 16px; background: #e6edf8; color: #1f3556; font-size: 12px; letter-spacing: .02em; }
+.info-button { width: 20px; height: 20px; display: inline-grid; place-items: center; padding: 0; margin-left: 3px; border: 0; background: transparent; color: var(--blue); cursor: help; vertical-align: middle; }
+.info-button svg { width: 15px; height: 15px; }
+.comparison-mobile { display: none; }
+.tooltip { position: fixed; z-index: 1000; max-width: 260px; padding: 11px 13px; border-radius: 11px; background: #10213f; color: #fff; font-size: 11px; line-height: 1.5; box-shadow: 0 14px 32px rgba(9,22,45,.24); pointer-events: none; }
+
+.rules-section { padding-top: 70px; }
+.rules-grid { max-width: 900px; margin: auto; display: grid; gap: 12px; }
+.rule-item, .faq-item, .mobile-plan-detail { overflow: hidden; border: 1px solid rgba(86,104,137,.16); border-radius: 16px; background: rgba(255,255,255,.78); box-shadow: 0 8px 20px rgba(20,38,72,.045); }
+.rule-item > button, .faq-item > button, .mobile-plan-detail > button { width: 100%; min-height: 62px; display: flex; align-items: center; justify-content: space-between; gap: 15px; padding: 0 18px; border: 0; background: transparent; text-align: left; font-weight: 780; cursor: pointer; }
+.rule-item > button > span { display: flex; align-items: center; gap: 11px; }
+.rule-item > button > span > svg { width: 19px; height: 19px; color: var(--blue); }
+.accordion-chevron { flex: 0 0 auto; transition: transform .25s ease; }
+.accordion-item.open .accordion-chevron, .mobile-plan-detail.open > button > svg { transform: rotate(180deg); }
+.accordion-body, .mobile-plan-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .28s ease; }
+.accordion-body > div, .mobile-plan-body > div { overflow: hidden; }
+.accordion-item.open .accordion-body, .mobile-plan-detail.open .mobile-plan-body { grid-template-rows: 1fr; }
+.accordion-body > div { padding: 0 20px; color: var(--muted); font-size: 12px; line-height: 1.65; }
+.accordion-item.open .accordion-body > div { padding-bottom: 19px; }
+.accordion-body p { margin: 0 0 10px; }
+.rule-alert { padding: 12px 14px; border-radius: 12px; background: #fff3df; color: #6f501e; font-weight: 750; }
+.rule-alert.muted { background: #f0f3f8; color: #536176; }
+
+.monthly-process { padding-top: 55px; }
+.monthly-process-card { padding: 31px; border-radius: 28px; background: linear-gradient(120deg,#edf3ff,#f7f4ff 52%,#effbf6); border: 1px solid rgba(89,106,137,.13); box-shadow: var(--shadow); }
+.monthly-steps { display: grid; grid-template-columns: repeat(11,auto); align-items: center; justify-content: space-between; gap: 9px; }
+.monthly-steps > div { min-width: 115px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+.monthly-steps span { width: 31px; height: 31px; display: grid; place-items: center; border-radius: 10px; background: var(--blue); color: #fff; font-size: 11px; font-weight: 900; }
+.monthly-steps strong { max-width: 135px; color: #394a64; font-size: 10px; line-height: 1.4; }
+.monthly-steps > svg { width: 18px; height: 18px; color: var(--blue); }
+.monthly-brief { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 29px; padding-top: 25px; border-top: 1px solid rgba(70,92,127,.13); }
+.monthly-brief h3 { margin: 0 0 12px; font-size: 16px; }
+.monthly-brief ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 12px; line-height: 1.8; }
+.no-promo-note { padding: 18px; border-radius: 17px; background: rgba(255,255,255,.76); }
+.no-promo-note strong { font-size: 13px; }
+.no-promo-note p { margin: 7px 0 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+
+.faq-section { padding-top: 60px; }
+.faq-grid { padding: 22px; border-radius: 26px; background: rgba(255,255,255,.72); border: 1px solid rgba(85,103,136,.14); box-shadow: var(--shadow-soft); display: grid; grid-template-columns: 1fr 1fr; gap: 12px 18px; }
+.faq-column { display: grid; gap: 12px; align-content: start; }
+.faq-item > button { min-height: 56px; font-size: 13px; }
+.faq-item .accordion-body > div { font-size: 12px; line-height: 1.6; }
+
+.contact-section { padding: 25px 0 38px; }
+.final-cta { min-height: 175px; display: grid; grid-template-columns: 165px 1fr auto; align-items: center; gap: 29px; padding: 27px 39px; border-radius: 27px; background: linear-gradient(105deg,#0751d9,#1268ed 55%,#104ec2); color: #fff; box-shadow: 0 24px 52px rgba(7,81,217,.26); position: relative; overflow: hidden; }
+.final-cta::after { content: ""; position: absolute; right: -40px; top: -80px; width: 250px; height: 250px; border-radius: 50%; border: 1px solid rgba(255,255,255,.18); }
+.final-copy { position: relative; z-index: 1; }
+.final-copy h2 { font-size: 28px; margin: 0 0 8px; }
+.final-copy p { max-width: 680px; margin: 0; color: rgba(255,255,255,.8); font-size: 14px; line-height: 1.55; }
+.final-copy small { display: block; margin-top: 8px; color: rgba(255,255,255,.7); font-size: 10px; }
+.final-actions { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 10px; }
+.store-illustration { width: 150px; height: 105px; position: relative; align-self: end; }
+.shop-body { position: absolute; left: 22px; right: 13px; bottom: 0; height: 72px; background: #ffe7bd; border-radius: 5px 5px 10px 10px; box-shadow: inset 0 -8px rgba(188,124,43,.09); }
+.awning { position: absolute; left: 10px; right: 0; top: 14px; height: 34px; display: flex; z-index: 2; }
+.awning i { flex: 1; background: #ffb446; border-radius: 4px 4px 12px 12px; }
+.awning i:nth-child(even) { background: #fff3d8; }
+.door { position: absolute; left: 23px; bottom: 0; width: 24px; height: 46px; background: #5d8bd1; border-radius: 4px 4px 0 0; }
+.window { position: absolute; right: 18px; bottom: 22px; width: 45px; height: 30px; border: 5px solid #6e9ad9; background: #cceaff; }
+.plant { position: absolute; bottom: 0; width: 28px; height: 42px; background: radial-gradient(ellipse at center,#72c28a 0 35%,transparent 37%), radial-gradient(ellipse at 35% 45%,#58ad73 0 30%,transparent 32%); }
+.plant.left { left: 0; } .plant.right { right: 0; transform: scaleX(-1); }
+
+.site-footer { padding: 20px 0 30px; }
+.footer-inner { min-height: 80px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 25px; border-top: 1px solid rgba(72,91,124,.13); padding-top: 24px; }
+.footer-brand span:last-child { display: flex; flex-direction: column; }
+.footer-brand small { margin-top: 3px; color: var(--muted); font-size: 10px; }
+.footer-inner nav { display: flex; gap: 20px; }
+.footer-inner nav a { color: #526078; font-size: 11px; font-weight: 700; }
+.footer-inner > p { justify-self: end; color: var(--muted); font-size: 10px; }
+
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.delay-1 { transition-delay: .08s; } .delay-2 { transition-delay: .16s; } .delay-3 { transition-delay: .24s; }
+
+@media (max-width: 1080px) {
+  .desktop-nav { gap: 18px; }
+  .hero-grid { grid-template-columns: .9fr 1.1fr; gap: 38px; }
+  .example-grid { grid-template-columns: 1fr 1fr; }
+  .process-grid { grid-template-columns: 1fr 25px 1fr; gap: 14px 0; }
+  .process-grid .process-arrow:nth-of-type(2) { display: none; }
+  .process-card:nth-of-type(3), .process-card:nth-of-type(4) { grid-row: 2; }
+  .process-card:nth-of-type(3) { grid-column: 1; }
+  .process-card:nth-of-type(4) { grid-column: 3; }
+  .process-grid .process-arrow:nth-of-type(3) { grid-row: 2; grid-column: 2; }
+  .monthly-steps { grid-template-columns: repeat(3,1fr); gap: 15px; }
+  .monthly-steps > svg { display: none; }
+  .monthly-steps > div { min-width: 0; padding: 14px; border-radius: 15px; background: rgba(255,255,255,.66); }
+  .final-cta { grid-template-columns: 130px 1fr; }
+  .final-actions { grid-column: 2; flex-direction: row; }
+}
+
+@media (max-width: 900px) {
+  .desktop-nav, .header-cta { display: none; }
+  .menu-toggle { display: grid; place-items: center; margin-left: auto; }
+  .site-header.menu-open .menu-icon { display: none; }
+  .site-header.menu-open .close-icon { display: block; }
+  .mobile-nav { position: absolute; left: 20px; right: 20px; top: 72px; display: grid; max-height: 0; overflow: hidden; opacity: 0; padding: 0 18px; border-radius: 17px; background: rgba(255,255,255,.97); box-shadow: var(--shadow); transition: max-height .28s ease, opacity .2s ease, padding .28s ease; }
+  .site-header.menu-open .mobile-nav { max-height: 430px; opacity: 1; padding: 12px 18px; }
+  .mobile-nav a { padding: 13px 4px; border-bottom: 1px solid #edf0f4; font-size: 13px; font-weight: 750; }
+  .mobile-nav a:last-child { border-bottom: 0; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-copy { text-align: center; }
+  .hero h1, .hero-lead { margin-left: auto; margin-right: auto; }
+  .hero-actions, .trust-row { justify-content: center; }
+  .hero-visual { max-width: 700px; width: 100%; margin: 15px auto 0; }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 650px; margin: auto; }
+  .price-card.featured { transform: none; }
+  .all-plans-grid { grid-template-columns: 1fr 1fr; }
+  .brief-flow { grid-template-columns: 1fr 60px 1fr; padding-left: 25px; padding-right: 25px; }
+  .brief-column ul { grid-template-columns: 1fr; }
+  .comparison-desktop { display: none; }
+  .comparison-mobile { display: grid; gap: 12px; }
+  .mobile-plan-detail > button { min-height: 70px; }
+  .mobile-plan-detail > button span { display: flex; flex-direction: column; gap: 3px; }
+  .mobile-plan-detail > button small { color: var(--muted); font-size: 11px; }
+  .featured-mobile { border-color: rgba(23,104,255,.55); }
+  .mobile-plan-body > div { padding: 0 19px; }
+  .mobile-plan-detail.open .mobile-plan-body > div { padding-bottom: 20px; }
+  .mobile-plan-body h4 { margin: 15px 0 5px; color: #2b3c57; font-size: 12px; }
+  .mobile-plan-body p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
+  .faq-grid { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr; text-align: center; }
+  .footer-brand, .footer-inner nav { justify-content: center; }
+  .footer-inner > p { justify-self: center; }
+}
+
+@media (max-width: 680px) {
+  .container { width: min(100% - 28px, var(--container)); }
+  .section-pad { padding: 67px 0; }
+  .nav-wrap { height: 70px; }
+  .brand-name { font-size: 21px; }
+  .brand-mark { width: 34px; height: 34px; }
+  .hero { padding-top: 55px; }
+  .eyebrow { font-size: 9px; letter-spacing: .06em; }
+  .hero h1 { margin-top: 19px; font-size: clamp(41px,12vw,56px); letter-spacing: -2.6px; }
+  .hero-lead { font-size: 16px; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { width: 100%; }
+  .trust-row { gap: 12px 18px; font-size: 11px; }
+  .hero-visual { min-height: 420px; }
+  .browser-window { right: 0; }
+  .sample-header div span { display: none; }
+  .sample-hero { height: 285px; }
+  .deliverables-card { right: -4px; top: 95px; width: 178px; padding: 14px; }
+  .deliverables-card ul { font-size: 10px; }
+  .monthly-card { left: 12px; width: 290px; }
+  .section-intro { margin-bottom: 31px; }
+  .section-intro h2 { font-size: 34px; letter-spacing: -1.3px; }
+  .section-intro p { font-size: 14px; }
+  .process-grid { grid-template-columns: 1fr; gap: 13px; }
+  .process-arrow { display: none !important; }
+  .process-card, .process-card:nth-of-type(3), .process-card:nth-of-type(4) { grid-row: auto; grid-column: auto; min-height: 235px; }
+  .brief-flow { grid-template-columns: 1fr; gap: 14px; padding: 24px 17px 58px; }
+  .brief-arrow { width: 48px; height: 48px; margin: auto; transform: rotate(90deg); }
+  .brief-column { padding: 18px; }
+  .example-grid { grid-template-columns: 1fr; }
+  .example-card { padding: 18px; }
+  .poster-preview, .campaign-flow { min-height: 280px; }
+  .phone-preview { max-width: 245px; }
+  .price-card { padding: 28px 22px 23px; }
+  .price-top p { min-height: 0; }
+  .all-plans { padding: 24px 20px; }
+  .all-plans-head { align-items: flex-start; }
+  .all-plans-grid { grid-template-columns: 1fr; }
+  .compare-toggle { width: 100%; min-width: 0; }
+  .rules-grid, .faq-grid { padding: 0; background: transparent; border: 0; box-shadow: none; }
+  .rule-item > button { font-size: 12px; }
+  .monthly-process-card { padding: 22px 17px; }
+  .monthly-steps { grid-template-columns: 1fr 1fr; }
+  .monthly-brief { grid-template-columns: 1fr; }
+  .final-cta { grid-template-columns: 1fr; text-align: center; padding: 28px 21px; }
+  .store-illustration { margin: auto; }
+  .final-actions { grid-column: 1; flex-direction: column; }
+  .final-actions .btn { width: 100%; }
+  .footer-inner nav { flex-wrap: wrap; gap: 14px 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+  </style>
+</head>
+<body>
+  <svg class="svg-sprite" aria-hidden="true">
+    <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-9 8.5 9.6 9.6 0 0 1-4-.9L3 21l1.9-4.6A8.6 8.6 0 1 1 21 11.5Z"/><path d="M8.4 7.8c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.8 2c.1.3.1.5-.1.7l-.6.7c-.2.2-.2.4-.1.6.4.8 1 1.5 1.7 2 .8.6 1.5.9 2.2 1.1.3.1.4 0 .6-.2l.8-1c.2-.2.4-.3.7-.2l2 .9c.3.1.5.3.5.5 0 .4-.2 1.3-.7 1.8-.5.6-1.5 1-2.4 1-1.2 0-2.8-.5-4.4-1.6-1.2-.8-2.4-1.9-3.3-3.2-.9-1.2-1.5-2.5-1.6-3.6 0-.8.2-1.2.5-1.6Z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6L12 3Z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15Z"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.8 3 8.5 7 10 4-1.5 7-5.2 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-5"/></symbol>
+    <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><path d="M6 13H4a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h2v-7ZM18 13h2a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-2v-7Z"/></symbol>
+    <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+    <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9" r="1.5"/><path d="m21 15-5-5L5 20"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 22c.6-5 3.2-8 8-8s7.4 3 8 8"/></symbol>
+    <symbol id="i-caption" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M7 9h10M7 13h7M7 17h5"/></symbol>
+    <symbol id="i-social" viewBox="0 0 24 24"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="m8.6 10.5 6.8-3M8.6 13.5l6.8 3"/></symbol>
+    <symbol id="i-map" viewBox="0 0 24 24"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3V6Z"/><path d="M9 3v15M15 6v15"/></symbol>
+    <symbol id="i-megaphone" viewBox="0 0 24 24"><path d="M4 12v-2l12-5v12L4 12Z"/><path d="M8 13v5a2 2 0 0 0 2 2h1l-1-7M19 8c1 1 1 5 0 6"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M8 14h2M14 14h2M8 18h2"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4 20-7Z"/><path d="M22 2 11 13"/></symbol>
+    <symbol id="i-host" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="6" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/><path d="M7 7h.01M7 17h.01M11 7h6M11 17h6"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+    <symbol id="i-mobile" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></symbol>
+    <symbol id="i-tools" viewBox="0 0 24 24"><path d="m14 7 3-3 3 3-3 3-3-3ZM4 20l8-8M7 4l13 13M4 7l3-3"/></symbol>
+    <symbol id="i-domain" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m5 5 14 14M19 5 5 19"/></symbol>
+  </svg>
+
+  <div class="site-shell">
+    <header class="site-header" id="top">
+      <div class="container nav-wrap">
+        <a class="brand" href="#top" aria-label="Howebz home">
+          <span class="brand-mark" aria-hidden="true"><img src="assets/logo.png" alt="" /></span>
+          <span class="brand-name">Howebz</span>
+        </a>
+        <nav class="desktop-nav" aria-label="Primary navigation">
+          <a href="#top">Home</a>
+          <a href="#process">How It Works</a>
+          <a href="#what-you-get">What You Get</a>
+          <a href="#pricing">Plans</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <a class="btn btn-whatsapp header-cta" href="https://wa.me/60177926259?text=Hi%20Howebz%2C%20I%27m%20interested%20in%20your%20website%20and%20monthly%20marketing%20service." target="_blank" rel="noopener">
+          <svg><use href="#i-whatsapp"></use></svg><span>WhatsApp Us</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+          <svg class="menu-icon"><use href="#i-menu"></use></svg>
+          <svg class="close-icon"><use href="#i-close"></use></svg>
+        </button>
+      </div>
+      <nav class="mobile-nav" aria-label="Mobile navigation">
+        <a href="#top">Home</a>
+        <a href="#process">How It Works</a>
+        <a href="#what-you-get">What You Get</a>
+        <a href="#pricing">Plans</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero section-pad">
+        <div class="hero-aurora hero-aurora-one"></div>
+        <div class="hero-aurora hero-aurora-two"></div>
+        <div class="container hero-grid">
+          <div class="hero-copy reveal">
+            <div class="eyebrow"><svg><use href="#i-sparkle"></use></svg> WEBSITE &amp; MONTHLY MARKETING — DONE FOR YOU</div>
+            <h1>You run your business. <span>We handle the rest.</span></h1>
+            <p class="hero-lead">Howebz prepares your professional website, monthly social media content and promotional materials—so you can focus on your customers.</p>
+            <div class="hero-actions">
+              <a class="btn btn-whatsapp btn-large" href="https://wa.me/60177926259?text=Hi%20Howebz%2C%20I%27m%20interested%20in%20your%20website%20and%20monthly%20marketing%20service." target="_blank" rel="noopener"><svg><use href="#i-whatsapp"></use></svg>WhatsApp Us</a>
+              <a class="btn btn-outline btn-large" href="#pricing">See Plans</a>
+            </div>
+            <div class="trust-row" aria-label="Service highlights">
+              <span><svg><use href="#i-monitor"></use></svg>Website Included</span>
+              <span><svg><use href="#i-calendar"></use></svg>Monthly Content Prepared</span>
+              <span><svg><use href="#i-headset"></use></svg>Real Human Support</span>
+            </div>
+          </div>
+
+          <div class="hero-visual reveal delay-1" aria-label="Website and marketing materials prepared by Howebz">
+            <div class="browser-window glass-card">
+              <div class="browser-top"><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span></div>
+              <div class="sample-header"><strong>Nature Glow Beauty</strong><div><span>Home</span><span>Services</span><span>About</span><span>Gallery</span><button>Book Now</button></div></div>
+              <div class="sample-hero">
+                <img src="assets/salon-interior.png" alt="Warm modern salon interior" />
+                <div class="sample-overlay">
+                  <small>WELCOME TO NATURE GLOW</small>
+                  <h2>Reveal your<br />natural glow</h2>
+                  <p>Relax, refresh, and feel your best.</p>
+                  <button>Book an Appointment</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="floating-card deliverables-card glass-card">
+              <div class="floating-title"><svg><use href="#i-check"></use></svg><strong>Monthly Marketing Ready</strong></div>
+              <ul>
+                <li><span><svg><use href="#i-check"></use></svg></span>Social Media Posts</li>
+                <li><span><svg><use href="#i-check"></use></svg></span>Promotion Posters</li>
+                <li><span><svg><use href="#i-check"></use></svg></span>WhatsApp Message</li>
+                <li><span><svg><use href="#i-check"></use></svg></span>Website Updates</li>
+              </ul>
+            </div>
+
+            <div class="floating-card monthly-card glass-card">
+              <div><small>BUSINESS PLAN EXAMPLE</small><strong>This Month</strong></div>
+              <div class="monthly-stats"><span><b>6</b>Posts</span><span><b>2</b>Posters</span><span><b>1</b>Message</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-pad process" id="process">
+        <div class="container">
+          <div class="section-intro reveal">
+            <span class="eyebrow simple">Simple from start to finish</span>
+            <h2>How It Works</h2>
+            <p>You send the details once. We organise, prepare and deliver everything together.</p>
+          </div>
+          <div class="process-grid">
+            <article class="process-card reveal">
+              <span class="step-number">1</span>
+              <div class="process-icon blue"><svg><use href="#i-send"></use></svg></div>
+              <h3>Send Your Details</h3>
+              <p>Share your business information, services, photos and promotion details.</p>
+            </article>
+            <div class="process-arrow"><svg><use href="#i-arrow"></use></svg></div>
+            <article class="process-card reveal delay-1">
+              <span class="step-number">2</span>
+              <div class="process-icon purple"><svg><use href="#i-calendar"></use></svg></div>
+              <h3>We Plan Everything</h3>
+              <p>We organise your website content and monthly marketing direction.</p>
+            </article>
+            <div class="process-arrow"><svg><use href="#i-arrow"></use></svg></div>
+            <article class="process-card reveal delay-2">
+              <span class="step-number">3</span>
+              <div class="process-icon amber"><svg><use href="#i-megaphone"></use></svg></div>
+              <h3>We Prepare It</h3>
+              <p>Your website, posts and promotional materials are prepared for you.</p>
+            </article>
+            <div class="process-arrow"><svg><use href="#i-arrow"></use></svg></div>
+            <article class="process-card reveal delay-3">
+              <span class="step-number">4</span>
+              <div class="process-icon green"><svg><use href="#i-check"></use></svg></div>
+              <h3>Review &amp; Receive</h3>
+              <p>Review everything together, request one small revision and receive the final files.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-pad what-you-get" id="what-you-get">
+        <div class="container">
+          <div class="section-intro reveal">
+            <span class="eyebrow simple">What You Get</span>
+            <h2>What We Prepare For You</h2>
+            <p>You send us your promotion details. We prepare the marketing materials for you.</p>
+          </div>
+
+          <div class="brief-flow reveal">
+            <div class="brief-column">
+              <span class="brief-label">YOU SEND US</span>
+              <ul>
+                <li><svg><use href="#i-megaphone"></use></svg>Promotion</li>
+                <li><svg><use href="#i-caption"></use></svg>Price and dates</li>
+                <li><svg><use href="#i-image"></use></svg>Photos</li>
+                <li><svg><use href="#i-info"></use></svg>Important details</li>
+              </ul>
+            </div>
+            <div class="brief-arrow" aria-hidden="true"><svg><use href="#i-arrow"></use></svg></div>
+            <div class="brief-column prepared">
+              <span class="brief-label">WE PREPARE</span>
+              <ul>
+                <li><svg><use href="#i-social"></use></svg>Social media posts</li>
+                <li><svg><use href="#i-image"></use></svg>Promotion posters</li>
+                <li><svg><use href="#i-whatsapp"></use></svg>WhatsApp message</li>
+                <li><svg><use href="#i-calendar"></use></svg>Monthly campaign content</li>
+              </ul>
+            </div>
+            <p class="brief-promise">You provide the promotion details. <strong>We do the rest.</strong></p>
+          </div>
+
+          <div class="example-grid">
+            <article class="example-card social-example reveal">
+              <div class="example-head">
+                <span class="example-icon"><svg><use href="#i-social"></use></svg></span>
+                <div><small>READY-MADE CONTENT</small><h3>Social Media Post</h3></div>
+              </div>
+              <div class="social-preview">
+                <div class="social-profile"><span>LH</span><div><strong>Luna Hair Studio</strong><small>Sponsored-style preview</small></div></div>
+                <img src="assets/hair-waves.png" alt="Hair styling visual example" />
+                <div class="social-copy">
+                  <p>Refresh your look this month ✨</p>
+                  <p>Enjoy our Hair Colour Package at only <strong>RM188</strong>.</p>
+                  <div class="caption-more" hidden>
+                    <p>Includes colour, treatment and styling. WhatsApp us to book your appointment.</p>
+                    <p class="hashtags">#HairColour #HairSalon #NewLook</p>
+                  </div>
+                  <button class="text-toggle caption-toggle" type="button" aria-expanded="false">View full caption <span>↓</span></button>
+                </div>
+              </div>
+              <p class="example-note">Includes caption, CTA, suggested platform and suggested visual.</p>
+            </article>
+
+            <article class="example-card poster-example reveal delay-1">
+              <div class="example-head">
+                <span class="example-icon amber"><svg><use href="#i-image"></use></svg></span>
+                <div><small>BRANDED DESIGN</small><h3>Promotional Poster</h3></div>
+              </div>
+              <div class="poster-preview">
+                <div class="poster-orb one"></div><div class="poster-orb two"></div>
+                <small>LUNA HAIR STUDIO</small>
+                <h4>HAIR COLOUR<br />PACKAGE</h4>
+                <strong>RM188</strong>
+                <p>Colour · Treatment · Styling</p>
+                <span>WhatsApp to Book</span>
+              </div>
+              <p class="example-note">Designed using your business name, photos, offer and branding.</p>
+            </article>
+
+            <article class="example-card whatsapp-example reveal delay-2">
+              <div class="example-head">
+                <span class="example-icon green"><svg><use href="#i-whatsapp"></use></svg></span>
+                <div><small>BUSINESS &amp; GROWTH</small><h3>WhatsApp Message</h3></div>
+              </div>
+              <div class="phone-preview">
+                <div class="phone-top"><span>‹</span><b>Luna Hair Studio</b><i>•••</i></div>
+                <div class="chat-area">
+                  <div class="chat-bubble">Hi 👋<br /><br />This month we’re offering a Hair Colour Package at RM188.<br /><br />Includes colouring, treatment and styling.<br /><br />Reply here if you’d like to book 😊<small>10:28 ✓✓</small></div>
+                </div>
+              </div>
+              <p class="example-note">Ready to send directly to your existing customers.</p>
+            </article>
+
+            <article class="example-card campaign-example reveal delay-3">
+              <div class="example-head">
+                <span class="example-icon purple"><svg><use href="#i-calendar"></use></svg></span>
+                <div><small>GROWTH PLAN</small><h3>Monthly Campaign</h3></div>
+              </div>
+              <div class="campaign-flow">
+                <span>Your Promotion</span><svg><use href="#i-arrow"></use></svg>
+                <span>Social Media Posts</span><svg><use href="#i-arrow"></use></svg>
+                <span>Promotion Posters</span><svg><use href="#i-arrow"></use></svg>
+                <span>WhatsApp Message</span><svg><use href="#i-arrow"></use></svg>
+                <span>Google Business Update</span>
+              </div>
+              <p class="example-note">One promotion turned into organised content across multiple channels.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-pad pricing" id="pricing">
+        <div class="container">
+          <div class="section-intro reveal">
+            <span class="eyebrow simple">Website + monthly marketing support</span>
+            <h2>Simple Plans for Your Business</h2>
+            <p>Get a professional website and ready-made marketing materials prepared for your business—without spending time on website tools, ChatGPT or Canva.</p>
+            <strong class="included-line">Hosting, maintenance and Howebz support included. Cancel anytime.</strong>
+          </div>
+
+          <div class="pricing-grid">
+            <article class="price-card reveal">
+              <div class="price-top">
+                <span class="plan-kicker">STARTER</span>
+                <h3>Get Your Business Online</h3>
+                <div class="price"><span>RM</span>59<small>/ month</small></div>
+                <p>For small businesses that need a simple professional website and basic monthly promotion support.</p>
+              </div>
+              <div class="plan-section">
+                <h4>Every Month We Prepare for You</h4>
+                <ul class="plan-list">
+                  <li><svg><use href="#i-check"></use></svg><span><strong>2 ready-made social media posts</strong><small>Captions for Facebook, Instagram or WhatsApp Status.</small></span></li>
+                  <li><svg><use href="#i-check"></use></svg><span><strong>1 branded promotional poster</strong><small>For an offer, service, holiday or announcement.</small></span></li>
+                  <li><svg><use href="#i-check"></use></svg><span><strong>Basic promotion support</strong><small>We help organise your promotion message.</small></span></li>
+                </ul>
+              </div>
+              <div class="plan-section website-section">
+                <h4>Your Professional Website</h4>
+                <ul class="compact-list">
+                  <li>1-page business website</li>
+                  <li>Free Howebz subdomain</li>
+                  <li>1 website update request / month</li>
+                </ul>
+              </div>
+              <p class="value-line">Build a professional online presence without handling the technical work yourself.</p>
+              <a class="btn btn-plan" href="https://wa.me/60177926259?text=Hi%20Howebz%2C%20I%27m%20interested%20in%20the%20Starter%20plan.%0A%0AMy%20business%20is%3A" target="_blank" rel="noopener">Start My Website</a>
+            </article>
+
+            <article class="price-card featured reveal delay-1">
+              <div class="popular-badge">Most Popular</div>
+              <div class="price-top">
+                <span class="plan-kicker">BUSINESS</span>
+                <h3>Stay Active Every Week</h3>
+                <div class="price"><span>RM</span>99<small>/ month</small></div>
+                <p>For businesses that want regular online activity without hiring a marketer.</p>
+              </div>
+              <div class="plan-section">
+                <h4>Every Month We Prepare for You</h4>
+                <ul class="plan-list">
+                  <li><svg><use href="#i-check"></use></svg><span><strong>6 ready-made social media posts</strong><small>Approximately 1–2 posts per week.</small></span></li>
+                  <li><svg><use href="#i-check"></use></svg><span><strong>2 branded promotional posters</strong><small>For offers, services, events and seasonal promotions.</small></span></li>
+                  <li><svg><use href="#i-check"></use></svg><span><strong>1 WhatsApp customer message</strong><small>A ready-to-send promotion for existing customers.</small></span></li>
+                  <li><svg><use href="#i-check"></use></svg><span><strong>Multi-platform promotion support</strong><small>Adapted for Facebook, Instagram and WhatsApp.</small></span></li>
+                </ul>
+              </div>
+              <div class="plan-section website-section">
+                <h4>Your Professional Website</h4>
+                <ul class="compact-list">
+                  <li>Up to 5 website pages</li>
+                  <li>Connect your own domain</li>
+                  <li>2 website update requests / month</li>
+                </ul>
+                <small class="page-example">Home · Services · Gallery · About · Contact</small>
+              </div>
+              <p class="value-line">Stay visible regularly and keep customers updated with your latest services and promotions.</p>
+              <a class="btn btn-plan primary" href="https://wa.me/60177926259?text=Hi%20Howebz%2C%20I%27m%20interested%20in%20the%20Business%20plan.%0A%0AMy%20business%20is%3A" target="_blank" rel="noopener">Choose Business</a>
+              <small class="best-value">Best value for most businesses.</small>
+            </article>
+
+            <article class="price-card reveal delay-2">
+              <div class="price-top">
+                <span class="plan-kicker">GROWTH</span>
+                <h3>Run Monthly Promotions</h3>
+                <div class="price"><span>RM</span>199<small>/ month</small></div>
+                <p>For businesses that regularly promote offers, launches, services or seasonal campaigns.</p>
+              </div>
+              <div class="plan-section">
+                <h4>Every Month We Prepare for You</h4>
+                <ul class="plan-list">
+                  <li><svg><use href="#i-check"></use></svg><span><strong>12 ready-made social media posts</strong><small>Approximately 3 posts per week.</small></span></li>
+                  <li><svg><use href="#i-check"></use></svg><span><strong>4 branded promotional posters</strong><small>For weekly promotions, campaigns and events.</small></span></li>
+                  <li><svg><use href="#i-check"></use></svg><span><strong>1 monthly promotion campaign</strong><small>One clear campaign adapted across your channels.</small></span></li>
+                  <li><svg><use href="#i-check"></use></svg><span><strong>1 WhatsApp customer message</strong><small>Prepared for direct customer communication.</small></span></li>
+                  <li><svg><use href="#i-check"></use></svg><span><strong>Google Business content support</strong><small>Updates for your Google Business Profile.</small></span></li>
+                  <li><svg><use href="#i-check"></use></svg><span><strong>Priority support</strong><small>Faster handling of requests.</small></span></li>
+                </ul>
+              </div>
+              <div class="plan-section website-section">
+                <h4>Your Professional Website</h4>
+                <ul class="compact-list">
+                  <li>Up to 8 website pages</li>
+                  <li>Connect your own domain</li>
+                  <li>4 website update requests / month</li>
+                </ul>
+              </div>
+              <p class="value-line">Promote consistently with one clear monthly campaign instead of creating content randomly.</p>
+              <a class="btn btn-plan" href="https://wa.me/60177926259?text=Hi%20Howebz%2C%20I%27m%20interested%20in%20the%20Growth%20plan.%0A%0AMy%20business%20is%3A" target="_blank" rel="noopener">Choose Growth</a>
+            </article>
+          </div>
+
+          <div class="all-plans reveal">
+            <div class="all-plans-head">
+              <span class="all-plans-icon"><svg><use href="#i-shield"></use></svg></span>
+              <div><h3>All Plans Include</h3><p>The essential website setup and ongoing support are already covered.</p></div>
+            </div>
+            <div class="all-plans-grid">
+              <span><svg><use href="#i-mobile"></use></svg>Mobile-friendly website</span>
+              <span><svg><use href="#i-whatsapp"></use></svg>WhatsApp enquiry button</span>
+              <span><svg><use href="#i-map"></use></svg>Google Maps integration</span>
+              <span><svg><use href="#i-caption"></use></svg>Services &amp; business information</span>
+              <span><svg><use href="#i-sparkle"></use></svg>Basic Google Search setup</span>
+              <span><svg><use href="#i-lock"></use></svg>Hosting and SSL security</span>
+              <span><svg><use href="#i-tools"></use></svg>Website maintenance</span>
+              <span><svg><use href="#i-headset"></use></svg>Howebz support</span>
+              <span><svg><use href="#i-refresh"></use></svg>Cancel anytime</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="compare-section" id="comparison">
+        <div class="container">
+          <div class="compare-toggle-wrap reveal">
+            <button class="compare-toggle" type="button" aria-expanded="false" aria-controls="compare-panel">
+              <span>See Everything Included</span><svg><use href="#i-chevron"></use></svg>
+            </button>
+          </div>
+
+          <div class="compare-panel" id="compare-panel" hidden>
+            <div class="comparison-desktop">
+              <div class="table-scroll" tabindex="0" aria-label="Full plan comparison table">
+                <table class="comparison-table">
+                  <thead><tr><th>Feature</th><th>Starter</th><th class="featured-col">⭐ Business</th><th>Growth</th><th>How It Helps Your Business</th></tr></thead>
+                  <tbody>
+                    <tr class="section-row"><th colspan="5">Monthly Marketing Support</th></tr>
+                    <tr><th>Monthly Fee</th><td><strong>RM59</strong></td><td class="featured-col"><strong>RM99</strong></td><td><strong>RM199</strong></td><td>Choose the level of monthly support your business needs.</td></tr>
+                    <tr><th>Ready-made Social Media Posts <button class="info-button" type="button" aria-label="About ready-made social media posts" data-tooltip="We prepare the caption, business message, CTA, suggested platform and suggested visual for you."><svg><use href="#i-info"></use></svg></button></th><td>2/month</td><td class="featured-col">6/month</td><td>12/month</td><td>We prepare the captions so you only need to review and post.</td></tr>
+                    <tr><th>Approximate Posting Frequency</th><td>Occasional</td><td class="featured-col">1–2/week</td><td>About 3/week</td><td>Helps your business stay visible without posting every day.</td></tr>
+                    <tr><th>Branded Promotional Posters <button class="info-button" type="button" aria-label="About promotional posters" data-tooltip="A separate final design for an offer, service, event, holiday or business announcement."><svg><use href="#i-info"></use></svg></button></th><td>1/month</td><td class="featured-col">2/month</td><td>4/month</td><td>Professional visuals for promotions, services, events and holidays.</td></tr>
+                    <tr><th>Suggested Visual for Each Post</th><td>Included</td><td class="featured-col">Included</td><td>Included</td><td>We suggest which customer photo, poster or approved media to use.</td></tr>
+                    <tr><th>Facebook Content</th><td>Included</td><td class="featured-col">Included</td><td>Included</td><td>Helps you communicate with customers on Facebook.</td></tr>
+                    <tr><th>Instagram Content</th><td>Included</td><td class="featured-col">Included</td><td>Included</td><td>Keeps your business profile fresh and professional.</td></tr>
+                    <tr><th>WhatsApp Status Content</th><td>Included</td><td class="featured-col">Included</td><td>Included</td><td>Lets you promote directly to existing contacts.</td></tr>
+                    <tr><th>WhatsApp Customer Message</th><td>—</td><td class="featured-col">1/month</td><td>1/month</td><td>A ready-to-send promotional message for customers.</td></tr>
+                    <tr><th>Google Business Content</th><td>—</td><td class="featured-col">—</td><td>Included</td><td>Helps keep your Google Business Profile active.</td></tr>
+                    <tr><th>Promotion Support</th><td>Basic promotion</td><td class="featured-col">Multi-platform promotion</td><td>Monthly campaign</td><td>Turns one business offer into organised promotional content.</td></tr>
+                    <tr><th>Monthly Campaign Planning</th><td>—</td><td class="featured-col">—</td><td>Included</td><td>Gives your business one clear promotion direction for the month.</td></tr>
+
+                    <tr class="section-row"><th colspan="5">Professional Website</th></tr>
+                    <tr><th>Website Size</th><td>1 page</td><td class="featured-col">Up to 5 pages</td><td>Up to 8 pages</td><td>More pages allow services and business information to be separated clearly.</td></tr>
+                    <tr><th>Website Address <button class="info-button" type="button" aria-label="About own domain" data-tooltip="A custom domain gives your business a more professional and easier-to-remember web address."><svg><use href="#i-info"></use></svg></button></th><td>Free subdomain</td><td class="featured-col">Custom domain support</td><td>Custom domain support</td><td>Your own domain looks more professional and is easier to remember.</td></tr>
+                    <tr><th>Website Update Requests <button class="info-button" type="button" aria-label="About website updates" data-tooltip="One request means one submitted group of related small changes, such as a price, date, banner and matching text."><svg><use href="#i-info"></use></svg></button></th><td>1/month</td><td class="featured-col">2/month</td><td>4/month</td><td>Send us new prices, photos, services or information for updating.</td></tr>
+                    <tr><th>Google Maps</th><td>Included</td><td class="featured-col">Included</td><td>Included</td><td>Helps customers find your business location.</td></tr>
+                    <tr><th>WhatsApp Enquiry Button</th><td>Included</td><td class="featured-col">Included</td><td>Included</td><td>Customers can contact you directly from the website.</td></tr>
+                    <tr><th>Mobile-Friendly Website</th><td>Included</td><td class="featured-col">Included</td><td>Included</td><td>Works properly on phones, tablets and computers.</td></tr>
+
+                    <tr class="section-row"><th colspan="5">Service and Support</th></tr>
+                    <tr><th>Hosting and SSL <button class="info-button" type="button" aria-label="About hosting and SSL" data-tooltip="Howebz keeps your website online, securely connected and running smoothly."><svg><use href="#i-info"></use></svg></button></th><td>Included</td><td class="featured-col">Included</td><td>Included</td><td>Howebz keeps your website online and securely connected.</td></tr>
+                    <tr><th>Website Maintenance</th><td>Included</td><td class="featured-col">Included</td><td>Included</td><td>We handle basic technical maintenance.</td></tr>
+                    <tr><th>Howebz Support</th><td>Standard</td><td class="featured-col">Standard</td><td>Priority</td><td>Contact Howebz for help and requests.</td></tr>
+                    <tr><th>Unused Monthly Items</th><td>Do not carry forward</td><td class="featured-col">Do not carry forward</td><td>Do not carry forward</td><td>Keeps monthly workload and delivery consistent.</td></tr>
+                    <tr><th>Cancel Anytime</th><td>Included</td><td class="featured-col">Included</td><td>Included</td><td>No long-term subscription contract.</td></tr>
+                    <tr><th>Best For</th><td>Keep your business online</td><td class="featured-col">Stay active every week</td><td>Run monthly promotions</td><td>Choose based on your current business activity.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="comparison-mobile">
+              <article class="mobile-plan-detail">
+                <button type="button" aria-expanded="false"><span><strong>Starter</strong><small>RM59/month</small></span><svg><use href="#i-chevron"></use></svg></button>
+                <div class="mobile-plan-body"><div><h4>Monthly Marketing</h4><p>2 ready-made posts · 1 poster · Basic promotion support</p><h4>Professional Website</h4><p>1 page · Free Howebz subdomain · 1 update request</p><h4>Best For</h4><p>Keeping a small business professionally online.</p></div></div>
+              </article>
+              <article class="mobile-plan-detail featured-mobile">
+                <button type="button" aria-expanded="false"><span><strong>⭐ Business</strong><small>RM99/month</small></span><svg><use href="#i-chevron"></use></svg></button>
+                <div class="mobile-plan-body"><div><h4>Monthly Marketing</h4><p>6 ready-made posts · 2 posters · 1 WhatsApp message · Multi-platform support</p><h4>Professional Website</h4><p>Up to 5 pages · Custom domain support · 2 update requests</p><h4>Best For</h4><p>Staying active every week without hiring a marketer.</p></div></div>
+              </article>
+              <article class="mobile-plan-detail">
+                <button type="button" aria-expanded="false"><span><strong>Growth</strong><small>RM199/month</small></span><svg><use href="#i-chevron"></use></svg></button>
+                <div class="mobile-plan-body"><div><h4>Monthly Marketing</h4><p>12 ready-made posts · 4 posters · Monthly campaign · WhatsApp and Google Business content</p><h4>Professional Website</h4><p>Up to 8 pages · Custom domain support · 4 update requests</p><h4>Best For</h4><p>Running organised monthly promotions and campaigns.</p></div></div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-pad rules-section" id="service-rules">
+        <div class="container">
+          <div class="section-intro reveal">
+            <span class="eyebrow simple">Clear monthly service rules</span>
+            <h2>How Our Monthly Content Works</h2>
+            <p>Simple definitions so you know exactly what is included.</p>
+          </div>
+          <div class="rules-grid reveal">
+            <article class="rule-item accordion-item">
+              <button type="button" aria-expanded="false"><span><svg><use href="#i-caption"></use></svg>What is included in a ready-made post?</span><svg class="accordion-chevron"><use href="#i-chevron"></use></svg></button>
+              <div class="accordion-body"><div>
+                <p>Each ready-made post includes a caption, promotion or business message, CTA, suggested platform, suggested visual and simple hashtags when suitable.</p>
+                <p>Visuals may use your real photos, approved existing materials, a Howebz promotional poster or a suitable simple background.</p>
+                <div class="rule-alert">A ready-made post does not automatically include a separately designed promotional poster.</div>
+              </div></div>
+            </article>
+            <article class="rule-item accordion-item">
+              <button type="button" aria-expanded="false"><span><svg><use href="#i-image"></use></svg>What counts as a branded promotional poster?</span><svg class="accordion-chevron"><use href="#i-chevron"></use></svg></button>
+              <div class="accordion-body"><div>
+                <p>A poster is one final designed visual, such as a square social poster, WhatsApp Status poster, new service poster, last call poster or holiday promotion poster.</p>
+                <p>Resizing the same design normally counts as the same poster unless significant redesign or rearrangement is required.</p>
+              </div></div>
+            </article>
+            <article class="rule-item accordion-item">
+              <button type="button" aria-expanded="false"><span><svg><use href="#i-calendar"></use></svg>What is a monthly promotion campaign?</span><svg class="accordion-chevron"><use href="#i-chevron"></use></svg></button>
+              <div class="accordion-body"><div>
+                <p>The Growth plan builds content around one main promotion direction: launch, explanation, customer question, benefits, result, booking reminder and last call.</p>
+                <p>It may include Facebook, Instagram, WhatsApp Status, WhatsApp customer message, Google Business update and promotional posters.</p>
+                <div class="rule-alert muted">Advertising management, ad budget, daily social media management, automatic posting, photography and video production are not included.</div>
+              </div></div>
+            </article>
+            <article class="rule-item accordion-item">
+              <button type="button" aria-expanded="false"><span><svg><use href="#i-tools"></use></svg>What is a website update request?</span><svg class="accordion-chevron"><use href="#i-chevron"></use></svg></button>
+              <div class="accordion-body"><div>
+                <p>One request means one submitted group of related small changes—for example updating a promotion price, date, related banner and matching text together.</p>
+                <p>It does not include a full redesign, many new pages, custom coding, e-commerce, a complete booking system or large-scale product entry.</p>
+              </div></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-pad monthly-process" id="monthly-process">
+        <div class="container">
+          <div class="section-intro reveal">
+            <span class="eyebrow simple">One organised delivery each month</span>
+            <h2>Monthly Service Process</h2>
+            <p>Your posts and posters are planned and prepared together—not through random daily requests.</p>
+          </div>
+          <div class="monthly-process-card reveal">
+            <div class="monthly-steps">
+              <div><span>1</span><strong>You send promotion details</strong></div><svg><use href="#i-arrow"></use></svg>
+              <div><span>2</span><strong>We prepare the content plan</strong></div><svg><use href="#i-arrow"></use></svg>
+              <div><span>3</span><strong>Posts and posters are prepared</strong></div><svg><use href="#i-arrow"></use></svg>
+              <div><span>4</span><strong>You review everything</strong></div><svg><use href="#i-arrow"></use></svg>
+              <div><span>5</span><strong>One small revision round</strong></div><svg><use href="#i-arrow"></use></svg>
+              <div><span>6</span><strong>Final delivery</strong></div>
+            </div>
+            <div class="monthly-brief">
+              <div>
+                <h3>What you send each month</h3>
+                <ul><li>Main service or product</li><li>Promotion price and dates</li><li>3–5 real business photos</li><li>Important message or selling point</li></ul>
+              </div>
+              <div class="no-promo-note">
+                <strong>No new promotion this month?</strong>
+                <p>We can prepare content using your existing services, business introduction, FAQs, care tips, booking reminders or other approved content.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-pad faq-section" id="faq">
+        <div class="container">
+          <div class="section-intro reveal"><span class="eyebrow simple">Before you get started</span><h2>Frequently Asked Questions</h2><p>Clear answers about your website and monthly marketing service.</p></div>
+          <div class="faq-grid reveal">
+            <div class="faq-column">
+              <article class="faq-item accordion-item"><button type="button" aria-expanded="false"><span>What do I need to send you?</span><svg class="accordion-chevron"><use href="#i-chevron"></use></svg></button><div class="accordion-body"><div><p>Your business name, services, contact details, address, logo if available, photos and any current promotion details.</p></div></div></article>
+              <article class="faq-item accordion-item"><button type="button" aria-expanded="false"><span>Does every post include a new design?</span><svg class="accordion-chevron"><use href="#i-chevron"></use></svg></button><div class="accordion-body"><div><p>No. Each ready-made post includes the caption, CTA and suggested visual. Separately designed promotional posters are limited according to your selected plan.</p></div></div></article>
+              <article class="faq-item accordion-item"><button type="button" aria-expanded="false"><span>Do I need to use ChatGPT or Canva?</span><svg class="accordion-chevron"><use href="#i-chevron"></use></svg></button><div class="accordion-body"><div><p>No. Send us your promotion details and photos. Howebz prepares the content and promotional materials for you.</p></div></div></article>
+              <article class="faq-item accordion-item"><button type="button" aria-expanded="false"><span>Can I update my website later?</span><svg class="accordion-chevron"><use href="#i-chevron"></use></svg></button><div class="accordion-body"><div><p>Yes. Send your related small changes together through WhatsApp. The number of monthly update requests depends on your plan.</p></div></div></article>
+              <article class="faq-item accordion-item"><button type="button" aria-expanded="false"><span>Do you provide hosting and SSL?</span><svg class="accordion-chevron"><use href="#i-chevron"></use></svg></button><div class="accordion-body"><div><p>Yes. Hosting, SSL security and basic technical maintenance are included in every plan.</p></div></div></article>
+            </div>
+            <div class="faq-column">
+              <article class="faq-item accordion-item"><button type="button" aria-expanded="false"><span>Do you post directly to my social media?</span><svg class="accordion-chevron"><use href="#i-chevron"></use></svg></button><div class="accordion-body"><div><p>Direct posting is not included initially. We prepare the materials for you to review and publish.</p></div></div></article>
+              <article class="faq-item accordion-item"><button type="button" aria-expanded="false"><span>How is the monthly content delivered?</span><svg class="accordion-chevron"><use href="#i-chevron"></use></svg></button><div class="accordion-body"><div><p>Posts and posters are prepared together and delivered once each month, with one small revision round included.</p></div></div></article>
+              <article class="faq-item accordion-item"><button type="button" aria-expanded="false"><span>Do unused posts carry forward?</span><svg class="accordion-chevron"><use href="#i-chevron"></use></svg></button><div class="accordion-body"><div><p>No. Unused monthly items do not automatically carry forward to the following month.</p></div></div></article>
+              <article class="faq-item accordion-item"><button type="button" aria-expanded="false"><span>Can I use my own domain?</span><svg class="accordion-chevron"><use href="#i-chevron"></use></svg></button><div class="accordion-body"><div><p>Yes. Custom domain support is included in Business and Growth. Starter includes a free Howebz subdomain.</p></div></div></article>
+              <article class="faq-item accordion-item"><button type="button" aria-expanded="false"><span>What is not included?</span><svg class="accordion-chevron"><use href="#i-chevron"></use></svg></button><div class="accordion-body"><div><p>Advertising management, ad budget, automatic posting, daily social media management, photography, video production and major custom development are not included.</p></div></div></article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact-section" id="contact">
+        <div class="container">
+          <div class="final-cta reveal">
+            <div class="store-illustration" aria-hidden="true"><div class="awning"><i></i><i></i><i></i><i></i><i></i></div><div class="shop-body"><span class="door"></span><span class="window"></span></div><span class="plant left"></span><span class="plant right"></span></div>
+            <div class="final-copy">
+              <h2>Focus on your customers. We’ll handle the rest.</h2>
+              <p>Your website, monthly marketing materials, updates and technical maintenance—all managed in one simple subscription.</p>
+              <small>No obligation. Tell us about your business and we’ll recommend the most suitable plan.</small>
+            </div>
+            <div class="final-actions">
+              <a class="btn btn-whatsapp btn-large" href="https://wa.me/60177926259?text=Hi%20Howebz%2C%20I%27m%20interested%20in%20your%20website%20and%20monthly%20marketing%20service.%0A%0AMy%20business%20is%3A%0AI%27m%20interested%20in%3A%20Starter%20%2F%20Business%20%2F%20Growth%20%2F%20Not%20sure" target="_blank" rel="noopener"><svg><use href="#i-whatsapp"></use></svg>Chat With Us</a>
+              <a class="btn btn-light btn-large" href="#pricing">See Plans</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <a class="brand footer-brand" href="#top"><span class="brand-mark"><img src="assets/logo.png" alt="" /></span><span><strong class="brand-name">Howebz</strong><small>Website &amp; Monthly Marketing Support</small></span></a>
+        <nav><a href="#top">Home</a><a href="#process">How It Works</a><a href="#what-you-get">What You Get</a><a href="#pricing">Plans</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></nav>
+        <p>© <span id="year"></span> Howebz. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <div class="tooltip" role="tooltip" hidden></div>
+  <script>
+(() => {
+  'use strict';
+
+  const header = document.querySelector('.site-header');
+  const menuButton = document.querySelector('.menu-toggle');
+  const mobileLinks = document.querySelectorAll('.mobile-nav a');
+
+  const updateHeader = () => header?.classList.toggle('scrolled', window.scrollY > 12);
+  updateHeader();
+  window.addEventListener('scroll', updateHeader, { passive: true });
+
+  menuButton?.addEventListener('click', () => {
+    const open = header.classList.toggle('menu-open');
+    menuButton.setAttribute('aria-expanded', String(open));
+    menuButton.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+
+  mobileLinks.forEach(link => link.addEventListener('click', () => {
+    header?.classList.remove('menu-open');
+    menuButton?.setAttribute('aria-expanded', 'false');
+    menuButton?.setAttribute('aria-label', 'Open menu');
+  }));
+
+  document.addEventListener('click', event => {
+    if (header?.classList.contains('menu-open') && !header.contains(event.target)) {
+      header.classList.remove('menu-open');
+      menuButton?.setAttribute('aria-expanded', 'false');
+      menuButton?.setAttribute('aria-label', 'Open menu');
+    }
+  });
+
+  document.querySelectorAll('.accordion-item > button, .mobile-plan-detail > button').forEach(button => {
+    button.addEventListener('click', () => {
+      const item = button.closest('.accordion-item, .mobile-plan-detail');
+      if (!item) return;
+      const open = item.classList.toggle('open');
+      button.setAttribute('aria-expanded', String(open));
+    });
+  });
+
+  document.querySelectorAll('.caption-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+      const more = button.parentElement?.querySelector('.caption-more');
+      if (!more) return;
+      const open = button.getAttribute('aria-expanded') !== 'true';
+      button.setAttribute('aria-expanded', String(open));
+      more.hidden = !open;
+      button.firstChild.textContent = open ? 'Hide full caption ' : 'View full caption ';
+    });
+  });
+
+  const compareToggle = document.querySelector('.compare-toggle');
+  const comparePanel = document.getElementById('compare-panel');
+  compareToggle?.addEventListener('click', () => {
+    const open = compareToggle.getAttribute('aria-expanded') !== 'true';
+    compareToggle.setAttribute('aria-expanded', String(open));
+    comparePanel.hidden = !open;
+    const label = compareToggle.querySelector('span');
+    if (label) label.textContent = open ? 'Hide Plan Details' : 'See Everything Included';
+    if (open) requestAnimationFrame(() => comparePanel.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+  });
+
+  const tooltip = document.querySelector('.tooltip');
+  let activeTooltipButton = null;
+
+  const positionTooltip = button => {
+    if (!tooltip || !button) return;
+    const rect = button.getBoundingClientRect();
+    const padding = 12;
+    tooltip.style.left = '0px';
+    tooltip.style.top = '0px';
+    tooltip.hidden = false;
+    const tipRect = tooltip.getBoundingClientRect();
+    let left = rect.left + rect.width / 2 - tipRect.width / 2;
+    left = Math.max(padding, Math.min(left, window.innerWidth - tipRect.width - padding));
+    let top = rect.bottom + 8;
+    if (top + tipRect.height > window.innerHeight - padding) top = rect.top - tipRect.height - 8;
+    tooltip.style.left = `${left}px`;
+    tooltip.style.top = `${Math.max(padding, top)}px`;
+  };
+
+  const showTooltip = button => {
+    if (!tooltip || !button) return;
+    activeTooltipButton = button;
+    tooltip.textContent = button.dataset.tooltip || '';
+    positionTooltip(button);
+  };
+
+  const hideTooltip = () => {
+    if (!tooltip) return;
+    tooltip.hidden = true;
+    tooltip.textContent = '';
+    activeTooltipButton = null;
+  };
+
+  document.querySelectorAll('.info-button').forEach(button => {
+    button.addEventListener('mouseenter', () => showTooltip(button));
+    button.addEventListener('mouseleave', hideTooltip);
+    button.addEventListener('focus', () => showTooltip(button));
+    button.addEventListener('blur', hideTooltip);
+    button.addEventListener('click', event => {
+      event.stopPropagation();
+      if (activeTooltipButton === button && !tooltip.hidden) hideTooltip();
+      else showTooltip(button);
+    });
+  });
+
+  document.addEventListener('click', event => {
+    if (!event.target.closest('.info-button')) hideTooltip();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      hideTooltip();
+      header?.classList.remove('menu-open');
+      menuButton?.setAttribute('aria-expanded', 'false');
+    }
+  });
+  window.addEventListener('resize', () => activeTooltipButton ? positionTooltip(activeTooltipButton) : null);
+  window.addEventListener('scroll', hideTooltip, { passive: true });
+
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(element => observer.observe(element));
+  } else {
+    reveals.forEach(element => element.classList.add('visible'));
+  }
+
+  const year = document.getElementById('year');
+  if (year) year.textContent = new Date().getFullYear();
+})();
+
+  </script>
+</body>
+</html>
