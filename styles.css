@@ -379,3 +379,33 @@ svg { width: 1.2em; height: 1.2em; fill: none; stroke: currentColor; stroke-widt
   .footer-inner { justify-content: center; text-align: center; }
   .footer-inner p { margin: 0; }
 }
+
+
+/* Generated standalone visual assets */
+.website-image-screen::after { display: none; }
+.website-image-screen > img { filter: none; object-fit: cover; object-position: center; }
+
+.generated-asset-card { padding: 0; overflow: hidden; background: #fff; }
+.generated-asset-card::after { display: none; }
+.generated-asset-card > img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.promo-card.generated-asset-card { min-height: 0; height: 238px; }
+.chat-card.generated-asset-card { height: 210px; }
+.chat-card.generated-asset-card > img { object-fit: cover; object-position: center; }
+
+.generated-sample { padding: 0; background: #fff; }
+.generated-sample > img { display: block; width: 100%; height: 100%; object-fit: cover; filter: none; }
+.contain-sample > img { object-fit: contain; background: #fff; }
+
+.generated-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; padding: 8px; background: #f7f9fc; }
+.generated-pair > img { width: 100%; height: 100%; min-width: 0; object-fit: cover; border-radius: 9px; }
+
+.google-sample.generated-sample > img { height: 100%; object-fit: contain; }
+.message-sample.generated-sample > img { height: 100%; object-fit: contain; }
+.monthly-image { padding: 18px; }
+.monthly-image img { display: block; width: 100%; height: auto; border-radius: 14px; }
+.cta-preview img { filter: none; object-position: center; }
+
+@media (max-width: 620px) {
+  .promo-card.generated-asset-card { height: 181px; min-height: 0; padding: 0; }
+  .chat-card.generated-asset-card { height: 165px; padding: 0; }
+}
