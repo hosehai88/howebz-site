@@ -5,134 +5,65 @@
   const menuButton = document.querySelector('.menu-toggle');
   const mobileLinks = document.querySelectorAll('.mobile-nav a');
 
-  const updateHeader = () => header?.classList.toggle('scrolled', window.scrollY > 12);
+  const closeMenu = () => {
+    header?.classList.remove('menu-open');
+    menuButton?.setAttribute('aria-expanded', 'false');
+    menuButton?.setAttribute('aria-label', 'Open menu');
+  };
+
+  const updateHeader = () => header?.classList.toggle('scrolled', window.scrollY > 10);
   updateHeader();
   window.addEventListener('scroll', updateHeader, { passive: true });
 
   menuButton?.addEventListener('click', () => {
-    const open = header.classList.toggle('menu-open');
-    menuButton.setAttribute('aria-expanded', String(open));
-    menuButton.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    const isOpen = header?.classList.toggle('menu-open') ?? false;
+    menuButton.setAttribute('aria-expanded', String(isOpen));
+    menuButton.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
   });
 
-  mobileLinks.forEach(link => link.addEventListener('click', () => {
-    header?.classList.remove('menu-open');
-    menuButton?.setAttribute('aria-expanded', 'false');
-    menuButton?.setAttribute('aria-label', 'Open menu');
-  }));
-
+  mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
   document.addEventListener('click', event => {
-    if (header?.classList.contains('menu-open') && !header.contains(event.target)) {
-      header.classList.remove('menu-open');
-      menuButton?.setAttribute('aria-expanded', 'false');
-      menuButton?.setAttribute('aria-label', 'Open menu');
-    }
+    if (header?.classList.contains('menu-open') && !header.contains(event.target)) closeMenu();
   });
 
-  document.querySelectorAll('.accordion-item > button, .mobile-plan-detail > button').forEach(button => {
+  document.querySelectorAll('.accordion-item > button').forEach(button => {
     button.addEventListener('click', () => {
-      const item = button.closest('.accordion-item, .mobile-plan-detail');
+      const item = button.closest('.accordion-item');
       if (!item) return;
-      const open = item.classList.toggle('open');
-      button.setAttribute('aria-expanded', String(open));
+      const isOpen = item.classList.toggle('open');
+      button.setAttribute('aria-expanded', String(isOpen));
     });
   });
 
-  document.querySelectorAll('.caption-toggle').forEach(button => {
-    button.addEventListener('click', () => {
-      const more = button.parentElement?.querySelector('.caption-more');
-      if (!more) return;
-      const open = button.getAttribute('aria-expanded') !== 'true';
-      button.setAttribute('aria-expanded', String(open));
-      more.hidden = !open;
-      button.firstChild.textContent = open ? 'Hide full caption ' : 'View full caption ';
-    });
+  const detailsToggle = document.querySelector('.details-toggle');
+  const planDetails = document.getElementById('plan-details');
+  detailsToggle?.addEventListener('click', () => {
+    const isOpen = detailsToggle.getAttribute('aria-expanded') !== 'true';
+    detailsToggle.setAttribute('aria-expanded', String(isOpen));
+    if (planDetails) planDetails.hidden = !isOpen;
+    const label = detailsToggle.querySelector('span');
+    if (label) label.textContent = isOpen ? 'Hide full plan details' : 'See full plan details';
   });
 
-  const compareToggle = document.querySelector('.compare-toggle');
-  const comparePanel = document.getElementById('compare-panel');
-  compareToggle?.addEventListener('click', () => {
-    const open = compareToggle.getAttribute('aria-expanded') !== 'true';
-    compareToggle.setAttribute('aria-expanded', String(open));
-    comparePanel.hidden = !open;
-    const label = compareToggle.querySelector('span');
-    if (label) label.textContent = open ? 'Hide Plan Details' : 'See Everything Included';
-    if (open) requestAnimationFrame(() => comparePanel.scrollIntoView({ behavior: 'smooth', block: 'start' }));
-  });
-
-  const tooltip = document.querySelector('.tooltip');
-  let activeTooltipButton = null;
-
-  const positionTooltip = button => {
-    if (!tooltip || !button) return;
-    const rect = button.getBoundingClientRect();
-    const padding = 12;
-    tooltip.style.left = '0px';
-    tooltip.style.top = '0px';
-    tooltip.hidden = false;
-    const tipRect = tooltip.getBoundingClientRect();
-    let left = rect.left + rect.width / 2 - tipRect.width / 2;
-    left = Math.max(padding, Math.min(left, window.innerWidth - tipRect.width - padding));
-    let top = rect.bottom + 8;
-    if (top + tipRect.height > window.innerHeight - padding) top = rect.top - tipRect.height - 8;
-    tooltip.style.left = `${left}px`;
-    tooltip.style.top = `${Math.max(padding, top)}px`;
-  };
-
-  const showTooltip = button => {
-    if (!tooltip || !button) return;
-    activeTooltipButton = button;
-    tooltip.textContent = button.dataset.tooltip || '';
-    positionTooltip(button);
-  };
-
-  const hideTooltip = () => {
-    if (!tooltip) return;
-    tooltip.hidden = true;
-    tooltip.textContent = '';
-    activeTooltipButton = null;
-  };
-
-  document.querySelectorAll('.info-button').forEach(button => {
-    button.addEventListener('mouseenter', () => showTooltip(button));
-    button.addEventListener('mouseleave', hideTooltip);
-    button.addEventListener('focus', () => showTooltip(button));
-    button.addEventListener('blur', hideTooltip);
-    button.addEventListener('click', event => {
-      event.stopPropagation();
-      if (activeTooltipButton === button && !tooltip.hidden) hideTooltip();
-      else showTooltip(button);
-    });
-  });
-
-  document.addEventListener('click', event => {
-    if (!event.target.closest('.info-button')) hideTooltip();
-  });
-  document.addEventListener('keydown', event => {
-    if (event.key === 'Escape') {
-      hideTooltip();
-      header?.classList.remove('menu-open');
-      menuButton?.setAttribute('aria-expanded', 'false');
-    }
-  });
-  window.addEventListener('resize', () => activeTooltipButton ? positionTooltip(activeTooltipButton) : null);
-  window.addEventListener('scroll', hideTooltip, { passive: true });
-
-  const reveals = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const revealElements = document.querySelectorAll('.reveal');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if ('IntersectionObserver' in window && !reducedMotion) {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
       });
-    }, { threshold: 0.1 });
-    reveals.forEach(element => observer.observe(element));
+    }, { threshold: 0.08 });
+    revealElements.forEach(element => observer.observe(element));
   } else {
-    reveals.forEach(element => element.classList.add('visible'));
+    revealElements.forEach(element => element.classList.add('visible'));
   }
 
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') closeMenu();
+  });
+
   const year = document.getElementById('year');
-  if (year) year.textContent = new Date().getFullYear();
+  if (year) year.textContent = String(new Date().getFullYear());
 })();
