@@ -467,7 +467,7 @@ h1 em {
   gap: 18px;
 }
 
-.floating-whatsapp {
+.floating-contact {
   position: fixed;
   right: 24px;
   bottom: 24px;
@@ -573,7 +573,7 @@ h1 em {
     flex-direction: column;
   }
 
-  .floating-whatsapp {
+  .floating-contact {
     display: grid;
   }
 }
