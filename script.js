@@ -1,114 +1,184 @@
 (() => {
-  'use strict';
+  "use strict";
 
-  const header = document.querySelector('.site-header');
-  const menuButton = document.querySelector('.menu-toggle');
-  const mobileLinks = document.querySelectorAll('.mobile-nav a');
-  const navLinks = document.querySelectorAll('.desktop-nav a[href^="#"]');
-
-  const closeMenu = () => {
-    header?.classList.remove('menu-open');
-    menuButton?.setAttribute('aria-expanded', 'false');
-    menuButton?.setAttribute('aria-label', 'Open menu');
+  const SITE_CONFIG = {
+    whatsappNumber: "60123456789",
+    defaultMessage: "Hi Howebz, I would like to know more about your website plans."
   };
 
-  const updateHeader = () => {
-    header?.classList.toggle('scrolled', window.scrollY > 10);
-  };
+  const header = document.querySelector("[data-header]");
+  const menuButton = document.querySelector("[data-menu-button]");
+  const mobileMenu = document.querySelector("[data-mobile-menu]");
+  const backToTop = document.querySelector("[data-back-to-top]");
+  const toast = document.querySelector("[data-toast]");
+  const demoDialog = document.querySelector("[data-demo-dialog]");
+  const navLinks = [...document.querySelectorAll('.desktop-nav a[href^="#"]')];
+  const pageSections = [...document.querySelectorAll("main section[id]")];
+  let toastTimer;
 
-  updateHeader();
-  window.addEventListener('scroll', updateHeader, { passive: true });
+  function createWhatsAppUrl(message) {
+    const number = SITE_CONFIG.whatsappNumber.replace(/\D/g, "");
+    return `https://wa.me/${number}?text=${encodeURIComponent(message || SITE_CONFIG.defaultMessage)}`;
+  }
 
-  menuButton?.addEventListener('click', () => {
-    const isOpen = header?.classList.toggle('menu-open') ?? false;
-    menuButton.setAttribute('aria-expanded', String(isOpen));
-    menuButton.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
-  });
+  function configureWhatsAppLinks() {
+    document.querySelectorAll("[data-whatsapp-message]").forEach((link) => {
+      link.href = createWhatsAppUrl(link.dataset.whatsappMessage);
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+    });
+  }
 
-  mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+  function closeMobileMenu() {
+    if (!menuButton || !mobileMenu) return;
+    menuButton.setAttribute("aria-expanded", "false");
+    menuButton.setAttribute("aria-label", "Open navigation");
+    mobileMenu.classList.remove("open");
+    document.body.classList.remove("menu-open");
+  }
 
-  document.addEventListener('click', event => {
-    if (!header?.classList.contains('menu-open')) return;
-    if (event.target instanceof Node && !header.contains(event.target)) closeMenu();
-  });
+  function toggleMobileMenu() {
+    if (!menuButton || !mobileMenu) return;
+    const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+    menuButton.setAttribute("aria-expanded", String(!isOpen));
+    menuButton.setAttribute("aria-label", isOpen ? "Open navigation" : "Close navigation");
+    mobileMenu.classList.toggle("open", !isOpen);
+    document.body.classList.toggle("menu-open", !isOpen);
+  }
 
-  document.querySelectorAll('.accordion-item > button').forEach(button => {
-    button.addEventListener('click', () => {
-      const currentItem = button.closest('.accordion-item');
-      if (!currentItem) return;
+  function updateHeader() {
+    const scrolled = window.scrollY > 18;
+    header?.classList.toggle("scrolled", scrolled);
+    backToTop?.classList.toggle("visible", window.scrollY > 700);
+  }
 
-      const shouldOpen = !currentItem.classList.contains('open');
+  function updateActiveNavigation() {
+    if (!pageSections.length) return;
+    const offset = window.scrollY + 150;
+    let currentId = pageSections[0].id;
 
-      document.querySelectorAll('.accordion-item.open').forEach(openItem => {
-        if (openItem === currentItem) return;
-        openItem.classList.remove('open');
-        openItem.querySelector(':scope > button')?.setAttribute('aria-expanded', 'false');
+    pageSections.forEach((section) => {
+      if (section.offsetTop <= offset) currentId = section.id;
+    });
+
+    navLinks.forEach((link) => {
+      link.classList.toggle("active", link.getAttribute("href") === `#${currentId}`);
+    });
+  }
+
+  function showToast(message) {
+    if (!toast) return;
+    window.clearTimeout(toastTimer);
+    toast.textContent = message;
+    toast.classList.add("show");
+    toastTimer = window.setTimeout(() => toast.classList.remove("show"), 2800);
+  }
+
+  function openDemo() {
+    if (!demoDialog) return;
+    if (typeof demoDialog.showModal === "function") {
+      demoDialog.showModal();
+    } else {
+      demoDialog.setAttribute("open", "");
+    }
+  }
+
+  function closeDemo() {
+    if (!demoDialog) return;
+    if (typeof demoDialog.close === "function") {
+      demoDialog.close();
+    } else {
+      demoDialog.removeAttribute("open");
+    }
+  }
+
+  function setupRevealAnimations() {
+    const elements = document.querySelectorAll(".reveal");
+    if (!("IntersectionObserver" in window)) {
+      elements.forEach((element) => element.classList.add("visible"));
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries, currentObserver) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("visible");
+        currentObserver.unobserve(entry.target);
       });
+    }, { threshold: 0.12, rootMargin: "0px 0px -30px" });
 
-      currentItem.classList.toggle('open', shouldOpen);
-      button.setAttribute('aria-expanded', String(shouldOpen));
+    elements.forEach((element) => observer.observe(element));
+  }
+
+  menuButton?.addEventListener("click", toggleMobileMenu);
+  mobileMenu?.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMobileMenu));
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeMobileMenu();
+  });
+
+  window.addEventListener("scroll", () => {
+    updateHeader();
+    updateActiveNavigation();
+  }, { passive: true });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 980) closeMobileMenu();
+  });
+
+  backToTop?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+  document.querySelectorAll("[data-open-demo]").forEach((button) => button.addEventListener("click", openDemo));
+  document.querySelector("[data-close-demo]")?.addEventListener("click", closeDemo);
+  demoDialog?.addEventListener("click", (event) => {
+    const bounds = demoDialog.getBoundingClientRect();
+    const outside = event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom;
+    if (outside) closeDemo();
+  });
+
+  document.querySelectorAll("[data-template]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const templateName = button.dataset.template;
+      showToast(`${templateName} selected — choose a plan to continue.`);
+      document.querySelector("#pricing")?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   });
 
-  const detailsToggle = document.querySelector('.details-toggle');
-  const planDetails = document.getElementById('plan-details');
-
-  detailsToggle?.addEventListener('click', () => {
-    const isOpen = detailsToggle.getAttribute('aria-expanded') !== 'true';
-    detailsToggle.setAttribute('aria-expanded', String(isOpen));
-
-    if (planDetails) planDetails.hidden = !isOpen;
-
-    const label = detailsToggle.querySelector('span');
-    if (label) label.textContent = isOpen ? 'Hide full plan details' : 'Compare full plan details';
+  document.querySelector("[data-view-all]")?.addEventListener("click", () => {
+    showToast("More industry templates are coming soon.");
   });
 
-  const revealElements = document.querySelectorAll('.reveal');
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if ('IntersectionObserver' in window && !reducedMotion) {
-    const revealObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('visible');
-        revealObserver.unobserve(entry.target);
-      });
-    }, { threshold: 0.08 });
-
-    revealElements.forEach(element => revealObserver.observe(element));
-  } else {
-    revealElements.forEach(element => element.classList.add('visible'));
-  }
-
-  const sectionIds = [...navLinks]
-    .map(link => link.getAttribute('href'))
-    .filter(href => href && href.length > 1)
-    .map(href => href.slice(1));
-
-  const sections = sectionIds
-    .map(id => document.getElementById(id))
-    .filter(Boolean);
-
-  if ('IntersectionObserver' in window && sections.length > 0) {
-    const navObserver = new IntersectionObserver(entries => {
-      const visible = entries
-        .filter(entry => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-      if (!visible) return;
-
-      navLinks.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === `#${visible.target.id}`);
-      });
-    }, { rootMargin: '-20% 0px -65% 0px', threshold: [0.01, 0.2, 0.5] });
-
-    sections.forEach(section => navObserver.observe(section));
-  }
-
-  document.addEventListener('keydown', event => {
-    if (event.key === 'Escape') closeMenu();
+  document.querySelectorAll(".plan-button").forEach((link) => {
+    link.addEventListener("click", () => {
+      const plan = link.dataset.plan;
+      try { localStorage.setItem("howebz-selected-plan", plan); } catch (_) { /* Storage may be blocked. */ }
+    });
   });
 
-  const year = document.getElementById('year');
-  if (year) year.textContent = String(new Date().getFullYear());
+  document.querySelectorAll("a[href^='#']").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const targetId = link.getAttribute("href");
+      if (!targetId || targetId === "#") return;
+      const target = document.querySelector(targetId);
+      if (!target) return;
+      event.preventDefault();
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+
+  document.querySelectorAll(".footer-social a[href='#']").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      showToast("Add your real social media URL in index.html.");
+    });
+  });
+
+  document.querySelectorAll("[data-year]").forEach((item) => {
+    item.textContent = new Date().getFullYear();
+  });
+
+  configureWhatsAppLinks();
+  setupRevealAnimations();
+  updateHeader();
+  updateActiveNavigation();
 })();
