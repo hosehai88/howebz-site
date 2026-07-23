@@ -1,11 +1,7 @@
 (() => {
   "use strict";
 
-  const SITE_CONFIG = {
-    whatsappNumber: "60123456789",
-    defaultMessage: "Hi Howebz, I would like to know more about your website plans."
-  };
-
+  const REGISTER_URL = "/register";
   const header = document.querySelector("[data-header]");
   const menuButton = document.querySelector("[data-menu-button]");
   const mobileMenu = document.querySelector("[data-mobile-menu]");
@@ -16,17 +12,37 @@
   const pageSections = [...document.querySelectorAll("main section[id]")];
   let toastTimer;
 
-  function createWhatsAppUrl(message) {
-    const number = SITE_CONFIG.whatsappNumber.replace(/\D/g, "");
-    return `https://wa.me/${number}?text=${encodeURIComponent(message || SITE_CONFIG.defaultMessage)}`;
+  function slugify(value) {
+    return String(value || "")
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
   }
 
-  function configureWhatsAppLinks() {
-    document.querySelectorAll("[data-whatsapp-message]").forEach((link) => {
-      link.href = createWhatsAppUrl(link.dataset.whatsappMessage);
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-    });
+  function readSelectedTemplate() {
+    try {
+      return localStorage.getItem("howebz-selected-template") || "";
+    } catch (_) {
+      return "";
+    }
+  }
+
+  function saveSelection(key, value) {
+    try {
+      localStorage.setItem(key, value);
+    } catch (_) {
+      // Registration still works when browser storage is blocked.
+    }
+  }
+
+  function createRegisterUrl(plan = "") {
+    const params = new URLSearchParams();
+    const selectedTemplate = readSelectedTemplate();
+    if (plan) params.set("plan", slugify(plan));
+    if (selectedTemplate) params.set("template", slugify(selectedTemplate));
+    const query = params.toString();
+    return query ? `${REGISTER_URL}?${query}` : REGISTER_URL;
   }
 
   function closeMobileMenu() {
@@ -47,8 +63,7 @@
   }
 
   function updateHeader() {
-    const scrolled = window.scrollY > 18;
-    header?.classList.toggle("scrolled", scrolled);
+    header?.classList.toggle("scrolled", window.scrollY > 18);
     backToTop?.classList.toggle("visible", window.scrollY > 700);
   }
 
@@ -76,20 +91,14 @@
 
   function openDemo() {
     if (!demoDialog) return;
-    if (typeof demoDialog.showModal === "function") {
-      demoDialog.showModal();
-    } else {
-      demoDialog.setAttribute("open", "");
-    }
+    if (typeof demoDialog.showModal === "function") demoDialog.showModal();
+    else demoDialog.setAttribute("open", "");
   }
 
   function closeDemo() {
     if (!demoDialog) return;
-    if (typeof demoDialog.close === "function") {
-      demoDialog.close();
-    } else {
-      demoDialog.removeAttribute("open");
-    }
+    if (typeof demoDialog.close === "function") demoDialog.close();
+    else demoDialog.removeAttribute("open");
   }
 
   function setupRevealAnimations() {
@@ -110,11 +119,22 @@
     elements.forEach((element) => observer.observe(element));
   }
 
+  function configurePlanLinks() {
+    document.querySelectorAll(".plan-button").forEach((link) => {
+      const plan = link.dataset.plan || "";
+      link.href = createRegisterUrl(plan);
+      link.addEventListener("click", () => saveSelection("howebz-selected-plan", plan));
+    });
+  }
+
   menuButton?.addEventListener("click", toggleMobileMenu);
   mobileMenu?.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMobileMenu));
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") closeMobileMenu();
+    if (event.key === "Escape") {
+      closeMobileMenu();
+      closeDemo();
+    }
   });
 
   window.addEventListener("scroll", () => {
@@ -138,21 +158,16 @@
 
   document.querySelectorAll("[data-template]").forEach((button) => {
     button.addEventListener("click", () => {
-      const templateName = button.dataset.template;
-      showToast(`${templateName} selected — choose a plan to continue.`);
+      const templateName = button.dataset.template || "Salon Template";
+      saveSelection("howebz-selected-template", templateName);
+      showToast(`${templateName} selected. Choose a plan to continue.`);
+      configurePlanLinks();
       document.querySelector("#pricing")?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   });
 
   document.querySelector("[data-view-all]")?.addEventListener("click", () => {
-    showToast("More industry templates are coming soon.");
-  });
-
-  document.querySelectorAll(".plan-button").forEach((link) => {
-    link.addEventListener("click", () => {
-      const plan = link.dataset.plan;
-      try { localStorage.setItem("howebz-selected-plan", plan); } catch (_) { /* Storage may be blocked. */ }
-    });
+    showToast("More salon templates are coming soon.");
   });
 
   document.querySelectorAll("a[href^='#']").forEach((link) => {
@@ -169,7 +184,7 @@
   document.querySelectorAll(".footer-social a[href='#']").forEach((link) => {
     link.addEventListener("click", (event) => {
       event.preventDefault();
-      showToast("Add your real social media URL in index.html.");
+      showToast("Add the official social media URL in index.html.");
     });
   });
 
@@ -177,7 +192,7 @@
     item.textContent = new Date().getFullYear();
   });
 
-  configureWhatsAppLinks();
+  configurePlanLinks();
   setupRevealAnimations();
   updateHeader();
   updateActiveNavigation();
