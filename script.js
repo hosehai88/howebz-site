@@ -7,7 +7,6 @@
   const mobileMenu = document.querySelector("[data-mobile-menu]");
   const backToTop = document.querySelector("[data-back-to-top]");
   const toast = document.querySelector("[data-toast]");
-  const demoDialog = document.querySelector("[data-demo-dialog]");
   const navLinks = [...document.querySelectorAll('.desktop-nav a[href^="#"]')];
   const pageSections = [...document.querySelectorAll("main section[id]")];
   let toastTimer;
@@ -89,18 +88,6 @@
     toastTimer = window.setTimeout(() => toast.classList.remove("show"), 2800);
   }
 
-  function openDemo() {
-    if (!demoDialog) return;
-    if (typeof demoDialog.showModal === "function") demoDialog.showModal();
-    else demoDialog.setAttribute("open", "");
-  }
-
-  function closeDemo() {
-    if (!demoDialog) return;
-    if (typeof demoDialog.close === "function") demoDialog.close();
-    else demoDialog.removeAttribute("open");
-  }
-
   function setupRevealAnimations() {
     const elements = document.querySelectorAll(".reveal");
     if (!("IntersectionObserver" in window)) {
@@ -133,7 +120,6 @@
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       closeMobileMenu();
-      closeDemo();
     }
   });
 
@@ -148,17 +134,10 @@
 
   backToTop?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
-  document.querySelectorAll("[data-open-demo]").forEach((button) => button.addEventListener("click", openDemo));
-  document.querySelector("[data-close-demo]")?.addEventListener("click", closeDemo);
-  demoDialog?.addEventListener("click", (event) => {
-    const bounds = demoDialog.getBoundingClientRect();
-    const outside = event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom;
-    if (outside) closeDemo();
-  });
 
   document.querySelectorAll("[data-template]").forEach((button) => {
     button.addEventListener("click", () => {
-      const templateName = button.dataset.template || "Salon Template";
+      const templateName = button.dataset.template || "Website Template";
       saveSelection("howebz-selected-template", templateName);
       showToast(`${templateName} selected. Choose a plan to continue.`);
       configurePlanLinks();
@@ -167,7 +146,7 @@
   });
 
   document.querySelector("[data-view-all]")?.addEventListener("click", () => {
-    showToast("More salon templates are coming soon.");
+    showToast("More templates are coming soon.");
   });
 
   document.querySelectorAll("a[href^='#']").forEach((link) => {
